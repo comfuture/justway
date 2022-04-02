@@ -1,0 +1,21 @@
+{
+  "name": "@justway/tailwindcss",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "prejss-cli 
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@justway/ui": "^1.0.0",
+    "autoprefixer": "^10.4.4",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.0.23"
+  },
+  "devDependencies": {
+    "prejss-cli": "^0.3.3"
+  }
+}

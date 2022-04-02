@@ -1,0 +1,17 @@
+@tailwind components;
+
+@layer components {
+  :root {
+    --ui-primary-color: #0070f3;
+    --ui-button-rounded: 2px;
+  }
+}
+
+button.ui, .button.ui {
+  @apply border-0;
+  @apply py-2 px-4 rounded-[var(--ui-button-rounded)] text-white font-semibold;
+
+  &.primary {
+    @apply bg-[color:var(--ui-primary-color)];
+  }
+}

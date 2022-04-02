@@ -1,0 +1,27 @@
+{
+  "name": "@justway/ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/style.css",
+  "style": "dist/style.css",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "rm -rf css; mkdir -p dist",
+    "build": "postcss --config src src/* --base src --dir css",
+    "postbuild": "find css -type f -name '*.css' -exec cat {} + >> 'dist/style.css'"
+  },
+  "files": [
+    "README.md",
+    "css/**/*.css"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.4",
+    "postcss": "^8.4.12",
+    "postcss-cli": "^9.1.0",
+    "postcss-import": "^14.1.0",
+    "postcss-nested": "^5.0.6",
+    "tailwindcss": "^3.0.23"
+  }
+}
