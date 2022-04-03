@@ -1,0 +1,12 @@
+:root {
+  --ui-primary-color: #a991f7;
+  --ui-secondary-color: #f6d860;
+  --ui-accent-color: #37cdbe;
+  --ui-natural-color: #3d4451;
+  --ui-link-color: #aaf;
+
+  --ui-radius: 0.25rem;
+
+  --ui-dialog-bg: #f6d860;
+  --ui-dialog-backdrop-blur: 3px;
+}

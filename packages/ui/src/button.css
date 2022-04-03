@@ -1,17 +1,22 @@
-@tailwind components;
+button.ui, .ui > button, .button.ui {
+  @apply border-0;  /* reset */
+  @apply bg-[color:var(--ui-natural-color)] rounded-[var(--ui-radius)];
+  /* @apply hover:bg-[color:hsl(var(--ui-natural-color),var(--ui-natural-color)/1)]; */
+  @apply py-2 px-4 text-white font-semibold;
 
-@layer components {
-  :root {
-    --ui-primary-color: #0070f3;
-    --ui-button-rounded: 2px;
+  &.text {
+    @apply text-[color:var(--ui-link-color)] bg-transparent;
   }
-}
-
-button.ui, .button.ui {
-  @apply border-0;
-  @apply py-2 px-4 rounded-[var(--ui-button-rounded)] text-white font-semibold;
 
   &.primary {
     @apply bg-[color:var(--ui-primary-color)];
+  }
+
+  &.secondary {
+    @apply bg-[color:var(--ui-secondary-color)];
+  }
+
+  &.accent {
+    @apply bg-[color:var(--ui-accent-color)];
   }
 }

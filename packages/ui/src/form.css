@@ -1,0 +1,13 @@
+form.ui, .ui form {
+  @apply flex flex-col gap-2 p-4 rounded-[var(--ui-radius)];
+
+  .field {
+    > label, > input {
+      @apply flex flex-col gap-1 my-2 font-semibold;
+    }
+  }
+
+  .actions {
+    @apply mt-3 flex justify-end gap-4;
+  }
+}

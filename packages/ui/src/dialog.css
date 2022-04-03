@@ -1,5 +1,25 @@
 dialog.ui {
-  @apply p-0 bg-white dark:bg-gray-700;
+  @apply top-0 bottom-0 p-0 border-0 bg-[color:var(--ui-dialog-bg)];
+  @apply shadow-lg min-w-[320px] rounded-md;
+
+  &::backdrop {
+    backdrop-filter: blur(var(--ui-dialog-backdrop-blur));
+  }
+
+  @keyframes dialog-open {
+    from {
+      opacity: .5;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &[open] {
+    animation: dialog-open 0.175s ease-out normal;
+  }
 
   > header, > .header {
     @apply p-2 bg-gray-400 flex flex-row gap-2;

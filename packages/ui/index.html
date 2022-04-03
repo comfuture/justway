@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <script>
+      function showDialog(selector, timeout = 0) {
+        const dialog = document.querySelector(selector);
+        if (dialog) {
+          dialog.showModal();
+          if (timeout > 0) {
+            setTimeout(() => {
+              dialog.close();
+            }, timeout);
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <script type="module" src="/main.ts"></script>
+    <div>
+      <h2>Buttons</h2>
+      <button class="ui">Default Button</button>
+      <button class="ui primary">Primary Button</button>
+      <button class="ui secondary">Secondary Button</button>
+      <button class="ui accent">Accent Button</button>
+      <button class="ui text">Text Button</button>
+
+      <h3>Button Group</h3>
+      <div class="ui group">
+        <button>Button 1</button>
+        <button>Button 2</button>
+        <button>Button 3</button>
+      </div>
+
+      <h3>Vertical Button Group</h3>
+      <div class="ui vertical group">
+        <button>Button 1</button>
+        <button class="primary">Button 2</button>
+        <button>Button 3</button>
+      </div>
+    </div>
+    <div>
+      <h2>Dialog</h2>
+      <dialog class="ui" id="dialog-1">
+        <p>This is default dialog</p>
+      </dialog>
+      <dialog class="ui" id="dialog-2">
+        <header>
+          Title
+        </header>
+        <p>This is default dialog</p>
+        <div class="actions">
+          <button class="ui primary">Primary</button>
+          <button class="ui secondary">Secondary</button>
+        </div>
+      </dialog>
+      <button class="ui primary" onclick="showDialog('#dialog-1', 3000)">Show Dialog</button>
+      <button class="ui primary" onclick="showDialog('#dialog-2', 3000)">Show Dialog(with header)</button>
+    </div>
+    <div>
+      <h2>Forms</h2>
+      <form action="" class="ui bg-gray-400">
+        <div class="field">
+          <label>
+            Name
+            <input type="text">
+          </label>
+          <label>
+            Address
+            <input type="text">
+          </label>
+          <div class="actions">
+            <button type="submit" class="ui primary">Submit</button>
+            <button type="reset" class="ui secondary">Reset</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <h3>Input group</h3>
+    <div class="ui group">
+      <input type="text">
+      <button>OK</button>
+    </div>
+  </body>
+</html>
