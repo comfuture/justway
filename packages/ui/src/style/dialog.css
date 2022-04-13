@@ -1,0 +1,5 @@
+dialog.ui {
+  &.drawer {
+    @apply m-0 top-0 left-0 right-[inherit] bottom-0 h-full overflow-y-auto w-fit;
+  }
+}

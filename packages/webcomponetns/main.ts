@@ -1,0 +1,1 @@
+import "@justway/ui/theme/default.css"; // default theme

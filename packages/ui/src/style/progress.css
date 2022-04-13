@@ -1,0 +1,6 @@
+progress.ui {
+  @apply bg-[color:var(--ui-bg-color)];
+  &::-webkit-progress-value {
+    @apply bg-[color:var(--ui-theme-color)];
+  }
+}

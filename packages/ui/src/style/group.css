@@ -1,0 +1,44 @@
+.ui.group {
+  @apply flex flex-row box-content gap-0 w-fit;
+
+  > *, > [type="text"], &> [type="number"] {
+    @apply rounded-none
+    /* @apply rounded-r-[var(-ui-radius)] rounded-r-[var(-ui-radius)] */
+  }
+
+  &:not(.vertical) {
+
+    &:not(:nth-child(1)) {
+      gap: -1px;
+    }
+
+    &.divided {
+      @apply divide-x;
+    }
+
+    &> :nth-child(1) {
+      @apply rounded-l-[var(--ui-border-radius)];
+    }
+
+    &> :last-child {
+      @apply rounded-r-[var(--ui-border-radius)];
+    }
+  }
+
+  &.vertical {
+    @apply flex-col;
+
+
+    &.divided {
+      @apply divide-y;
+    }
+
+    &> :nth-child(1) {
+      @apply rounded-t-[var(--ui-border-radius)];
+    }
+
+    &> :last-child {
+      @apply rounded-b-[var(--ui-border-radius)];
+    }
+  }
+}

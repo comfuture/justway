@@ -1,9 +1,0 @@
-input.ui, .ui input {
-
- &[type="text"], &[type="number"] {
-    @apply border-gray-400 border rounded-[var(--ui-radius)] p-2;
-    @apply bg-white;
-
-    backdrop-filter: blur(var(--ui-dialog-backdrop-blur));
- }
-}

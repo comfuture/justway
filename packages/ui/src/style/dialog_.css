@@ -1,0 +1,42 @@
+/* export default {"dialog.ui":{"top":"0px","bottom":"0px","borderWidth":"0px","backgroundColor":"var(--ui-dialog-bg)","padding":"0px","minWidth":"320px","borderRadius":"0.375rem","--tw-shadow":["0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)","var(--tw-shadow-colored)"],"--tw-shadow-colored":"0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color)","boxShadow":"var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)","--tw-shadow-color":"rgb(0 0 0 / 0.3)"},"dialog.ui::-webkit-backdrop":{"WebkitBackdropFilter":"var(--ui-backdrop-blur)","backdropFilter":"var(--ui-backdrop-blur)"},"dialog.ui::backdrop":{"WebkitBackdropFilter":"var(--ui-backdrop-blur)","backdropFilter":"var(--ui-backdrop-blur)"},"@-webkit-keyframes dialog-open":{"from":{"opacity":0.5,"transform":"scale(0.9)"},"to":{"opacity":1,"transform":"scale(1)"}},"@keyframes dialog-open":{"from":{"opacity":0.5,"transform":"scale(0.9)"},"to":{"opacity":1,"transform":"scale(1)"}},"dialog.ui[open]":{"WebkitAnimation":"dialog-open 0.175s ease-out normal","animation":"dialog-open 0.175s ease-out normal"},"dialog.ui > header, dialog.ui > .header":{"display":"flex","flexDirection":"row","gap":"0.5rem","--tw-bg-opacity":"1","backgroundColor":"rgb(156 163 175 / var(--tw-bg-opacity))","padding":"0.75rem"},"dialog.ui > header h1, dialog.ui > header .title, dialog.ui > .header h1, dialog.ui > .header .title":{"margin":"0px","flex":"1 1 0%","fontSize":"1.125rem","lineHeight":"1.75rem","fontWeight":600},"@media (prefers-color-scheme: dark)":{"dialog.ui > header h1, dialog.ui > header .title, dialog.ui > .header h1, dialog.ui > .header .title":{"--tw-text-opacity":"1","color":"rgb(255 255 255 / var(--tw-text-opacity))"}},"dialog.ui .content":{"padding":"1rem"},"dialog.ui > footer, dialog.ui .actions":{"display":"flex","justifyContent":"flex-end","gap":"0.5rem","padding":"1rem"}} */
+
+.ui > .header .title {
+  flex: 1 1 0%;
+}
+
+dialog.ui > header h1, dialog.ui > header .title, dialog.ui > .header h1, dialog.ui > .header .title {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+dialog.ui > header h1, dialog.ui > header .title, dialog.ui > .header h1, dialog.ui > .header .title {
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+
+  dialog.ui > header h1, dialog.ui > header .title, dialog.ui > .header h1, dialog.ui > .header .title {
+      --tw-text-opacity: 1;
+      color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+}
+
+dialog.ui .content {
+  padding: 1rem;
+}
+
+dialog.ui > footer, dialog.ui .actions {
+  display: flex;
+}
+
+dialog.ui > footer, dialog.ui .actions {
+  justify-content: flex-end;
+}
+
+dialog.ui > footer, dialog.ui .actions {
+  gap: 0.5rem;
+}
+
+dialog.ui > footer, dialog.ui .actions {
+  padding: 1rem;
+}

@@ -1,0 +1,35 @@
+/* export default {"form.ui, .ui form":{"display":"flex","flexDirection":"column","gap":"0.5rem","borderRadius":"var(--ui-radius)","padding":"1rem"},"form.ui .field > label, form.ui .field > input, .ui form .field > label, .ui form .field > input":{"marginTop":"0.5rem","marginBottom":"0.5rem","display":"flex","flexDirection":"column","gap":"0.25rem","fontWeight":600},"form.ui .actions, .ui form .actions":{"marginTop":"0.75rem","display":"flex","justifyContent":"flex-end","gap":"1rem"}} */
+.field > label, .ui form .field > input {
+
+    flex-direction: column;
+}
+
+  form.ui .field > label, form.ui .field > input, .ui form .field > label, .ui form .field > input {
+
+    gap: 0.25rem;
+}
+
+  form.ui .field > label, form.ui .field > input, .ui form .field > label, .ui form .field > input {
+
+    font-weight: 600;
+}
+
+  form.ui .actions, .ui form .actions {
+
+    margin-top: 0.75rem;
+}
+
+  form.ui .actions, .ui form .actions {
+
+    display: flex;
+}
+
+  form.ui .actions, .ui form .actions {
+
+    justify-content: flex-end;
+}
+
+  form.ui .actions, .ui form .actions {
+
+    gap: 1rem;
+}

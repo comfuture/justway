@@ -1,0 +1,133 @@
+---
+title: Introduction
+description: Docs intro
+layout: ../../layouts/MainLayout.astro
+---
+
+**Justway UI** is designed to try to comply with the standard. It uses html5 native tags whenever possible. Minimize nested wrapper or helper elements and use minimal expressive css. It may not work correctly in older browsers. However, we cannot afford to waste any more opportunities to maintain the old technology. Let's move forward.
+
+## 이름?
+
+Bruno mars 의 어떤 멜로디가 떠올랐다면? 맞다. 이름을 지으려고 할 때 머리속에 흐르던 노래때문에 지었다.
+`[ʤəst(ə) weɪ ju ɑi]`
+
+## 특징
+
+초 경량. 불필요한 reset 하지 않음. html 태그 본연의 표현방법을 조금 아름답게 할 뿐. 리셋이 필요하다면 tailwind base 또는 reset.css 등을 이용하여 직접 할것.
+
+컴포넌트 말단에 정의하는 유틸리티는 utility first 를 지향하는 프레임웍들과 같은 `variant:util-value` 같은 네이밍을 가질 필요가 없음. 또한 `.btn`과 같은 모호한 약어(이미 암묵적으로 알 수 있다고 하더라도)를 쓰지 않음.
+
+속성 변형을 위해 컴포넌트 prefix를 반복하지 않음 `<button class="btn btn-lg btn-primary btn-outline">`.
+대신에 형용사를 통해 꾸밈 `<button class="bordered primary ui">`
+
+논란이 있지만 많은(대부분의) 경우 속성 중첩이 발생하지 않습니다. `bordered` 와 같은 흔한 일반명사에 스타일을 지정하는 쪽이 나쁜 것
+
+- ✅ **Full Markdown support**
+- ✅ **Responsive mobile-friendly design**
+- ✅ **Sidebar navigation**
+- ✅ **Search (powered by Algolia)**
+- ✅ **Multi-language i18n**
+- ✅ **Automatic table of contents**
+- ✅ **Automatic list of contributors**
+- ✅ (and, best of all) **dark mode**
+
+## Getting Started
+
+
+### Install
+```sh
+$ npm i -D @justway/ui
+```
+
+### In your code
+
+* main.ts
+```js
+import '@justway/ui/theme/default.css'
+import '@justway/ui/css'
+
+// ... remain code ...
+```
+
+or
+
+* style.css
+```css
+@import '@justway/ui/theme/default.css';
+@import '@justway/ui';
+
+/* ... remain styles ...
+```
+
+UI 컴포넌트들은 기본적으로 theme 를 포함하지 않음. 스타일링을 하려면 테마를 import 하던가 직접 시작하셈.
+[Themes](/en/themes) 테마 참조
+
+You can use it in another way,
+
+* in `tailwind.config.ts` or `windi.config.ts`
+```ts
+{
+  // ...
+  plugins: [
+    require('@justway/tailwindcss')({
+      theme: 'default'
+    }),
+    // or
+    require('@justway/windicss')({
+      theme: 'default'
+    }),
+  ]
+}
+```
+css framework 의 플러그인으로 사용하는 경우, 이용하지 않은 css definition이 빌드 이후 purgecss 되는 benefit 을 취할 수 있다. (참조)
+
+아래 [Integrations](#integrations) 섹션에서 자세히 설명함
+
+개별 컴포넌트만 임포트할 수도 있음
+
+```vue
+<script setup>
+import '@justway/ui/theme/default.css'
+import '@justway/ui/css/button.css'
+</script>
+<template>
+  <button class="ui primary">OK</button>
+</template>
+```
+사용하지 않는 불필요한 css를 추가하고싶지 않으면 이용하세요. 하지만 postcss 또는 tailwind의 플러그인 형태로 사용하는 경우 일일히 신경쓰지 않아도 purgecss 됩니다. (참고..)
+
+### Integrations
+
+* tailwindcss
+* windicss
+* react
+* vue
+* svelte
+* ...
+
+## Usage
+
+기본태그에 단순히 `ui` 클래스를 추가해줍니다. 만약 기본태그가 아닌 요소의 모양을 변경하려면 해당 요소의 특징을 나타내는 클래스명을 덧붙입니다.
+
+```html
+<button class="ui">일반 버튼</button>
+또는
+<a class="ui button">일반 버튼</button>
+어쩌면
+<nuxt-link class="ui button" :to="{name: 'index'}">일반 버튼</nuxt-link>
+```
+
+특징을 확장하려면 형용사를 이용하세요
+
+```html
+<button class="bordered primary ui">Primary 외곽선 버튼</button>
+```
+
+<button class="bordered primary ui">Primary 외곽선 버튼</button>
+
+
+```html
+<button class="text ui">text 버튼</button>
+```
+
+<button class="text ui">text 버튼</button>

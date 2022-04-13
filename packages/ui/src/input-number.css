@@ -1,7 +1,0 @@
-:root {
-  --input-background: #eee;
-}
-input[type="number"].ui {
-  @apply p-2 border border-gray-400 rounded;
-  @apply bg-[color:var(--input-background)] dark:bg-gray-700;
-}

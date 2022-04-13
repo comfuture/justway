@@ -1,0 +1,44 @@
+menu.ui, .ui.menu {
+  @apply list-none m-0 p-0 flex flex-col w-fit min-w-[12em];
+
+  &.vertical {
+    @apply flex-col;
+  }
+
+  &.horizontal {
+    @apply flex-row min-w-fit gap-2;
+  }
+
+  &:not(.tab) {
+    > li, > menuitem, > .item {
+      @apply px-4 py-2 rounded-[var(--ui-border-radius)];
+      &:hover {
+        @apply bg-teal-200;
+      }
+      &.active {
+        @apply bg-[color:var(--ui-accent-color)];
+      }
+    }
+  }
+
+  &.pill {
+    > li, > menuitem, > .item {
+      @apply rounded-full;
+    }
+  }
+
+  /* tab menu */
+  &.tab {
+    @apply flex-row px-2 gap-2 border-solid border-0 border-b w-auto;
+
+    > li, > menuitem, > .item {
+      @apply -mb-[1px];
+      @apply py-2 px-4 border border-solid rounded rounded-b-none;
+      @apply bg-gray-200;
+
+      &.active {
+        @apply bg-white border-b-0;
+      }
+    }
+  }
+}

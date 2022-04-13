@@ -5,6 +5,11 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <style type="text/css">
+      body {
+        /* background-color: #121212; */
+      }
+    </style>
     <script>
       function showDialog(selector, timeout = 0) {
         const dialog = document.querySelector(selector);
@@ -17,10 +22,54 @@
           }
         }
       }
+
+      function showTab(id) {
+        const tab = document.querySelector(`#${id}`);
+        if (tab) {
+          tab.click();
+        }
+      }
     </script>
   </head>
   <body>
     <script type="module" src="/main.ts"></script>
+
+    <menu class="vertical tab ui">
+      <li>Item 1</li>
+      <li class="active">Item 2</li>
+      <li>Item 3</li>
+    </menu>
+
+    <div>
+      <h2>Menus</h2>
+      <menu class="ui">
+        <li>Item1</li>
+        <li class="active">Item2</li>
+        <li>Item3</li>
+      </menu>
+      <h3>Horizontal menu</h3>
+      <menu class="horizontal pill ui">
+        <li>Item1</li>
+        <li class="active">Item2</li>
+        <li>Item3</li>
+      </menu>
+    </div>
+    <div>
+      <h2>Card</h2>
+      <div class="ui card">
+        <figure>
+          <img src="https://picsum.photos/id/1/300/200" />
+        </figure>
+        <div class="content">
+          <div class="title">Card</div>
+          <div class="subtitle">Subtitle</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2>Alerts</h2>
+      <div class="ui alert">UI Alert</div>
+    </div>
     <div>
       <h2>Buttons</h2>
       <button class="ui">Default Button</button>
@@ -28,7 +77,40 @@
       <button class="ui secondary">Secondary Button</button>
       <button class="ui accent">Accent Button</button>
       <button class="ui text">Text Button</button>
+      <button class="ui primary text">Primary Text Button</button>
 
+      <h2>Elevated</h2>
+      <button class="elevated ui">Default Button</button>
+      <button class="elevated ui primary">Primary Button</button>
+      <button class="elevated ui secondary">Secondary Button</button>
+      <button class="elevated ui accent">Accent Button</button>
+      <button class="elevated ui text">Text Button</button>
+      <button class="elevated ui primary text">Primary Text Button</button>
+
+      <h2>Raised</h2>
+      <button class="raised ui">Default Button</button>
+      <button class="raised ui primary">Primary Button</button>
+      <button class="raised ui secondary">Secondary Button</button>
+      <button class="raised ui accent">Accent Button</button>
+      <button class="raised ui text">Text Button</button>
+      <button class="raised ui primary text">Primary Text Button</button>
+
+      <h2>Outlined</h2>
+      <button class="ui bordered">Default Button</button>
+      <button class="ui bordered primary">Outline Primary Button</button>
+      <button class="ui bordered secondary">Outline Secondary Button</button>
+      <button class="ui bordered accent">Outline Accent Button</button>
+      <button class="ui bordered text">Outline Text Button</button>
+
+
+      <h2>Disabled state</h2>
+      <button disabled class="ui">Disabled Button</button>
+      <button disabled class="ui primary">Primary Button</button>
+      <button disabled class="ui secondary">Secondary Button</button>
+      <button disabled class="ui accent">Accent Button</button>
+      <button disabled class="ui text">Text Button</button>
+
+    
       <h3>Button Group</h3>
       <div class="ui group">
         <button>Button 1</button>
@@ -36,30 +118,57 @@
         <button>Button 3</button>
       </div>
 
+      <h3>Divided Button Group</h3>
+      <div class="ui divided group">
+        <button>Button 1</button>
+        <button>Button 2</button>
+        <button>Button 3</button>
+      </div>
+
       <h3>Vertical Button Group</h3>
       <div class="ui vertical group">
+        <button>Button 1 asd asdfk jals fkjslkj </button>
+        <button class="primary">Button 2</button>
+        <button>Button 3</button>
+      </div>
+
+      <h3>full width Vertical Button Group</h3>
+      <div class="ui vertical group" style="width: 100%">
+        <button>Button 1 asd asdfk jals fkjslkj </button>
+        <button class="primary">Button 2</button>
+        <button>Button 3</button>
+      </div>
+
+      <h3>Divided Vertical Button Group</h3>
+      <div class="ui divided vertical group">
         <button>Button 1</button>
         <button class="primary">Button 2</button>
         <button>Button 3</button>
       </div>
     </div>
     <div>
+      <h2>Card</h2>
+      <div class="ui card">
+        Card
+      </div>
+    </div>
+    <div>
       <h2>Dialog</h2>
       <dialog class="ui" id="dialog-1">
-        <p>This is default dialog</p>
+        <div class="content">This is default dialog</div>
       </dialog>
       <dialog class="ui" id="dialog-2">
         <header>
-          Title
+          <h1>Title</h1>
         </header>
-        <p>This is default dialog</p>
+        <div class="content">This is default dialog</div>
         <div class="actions">
           <button class="ui primary">Primary</button>
           <button class="ui secondary">Secondary</button>
         </div>
       </dialog>
       <button class="ui primary" onclick="showDialog('#dialog-1', 3000)">Show Dialog</button>
-      <button class="ui primary" onclick="showDialog('#dialog-2', 3000)">Show Dialog(with header)</button>
+      <button class="ui primary" onclick="showDialog('#dialog-2')">Show Dialog(with header)</button>
     </div>
     <div>
       <h2>Forms</h2>
@@ -82,9 +191,126 @@
     </div>
 
     <h3>Input group</h3>
-    <div class="ui group">
+    <div class="ui group w-full">
       <input type="text">
       <button>OK</button>
     </div>
+
+    <h2>Section</h2>
+
+    <div class="ui filled section">
+      filled section
+    </div>
+
+    <h2>Item</h2>
+    <div class="flex flex-col gap-2">
+      <div class="ui item">
+        Simple Item
+      </div>
+
+      <div class="ui bordered item">
+        Bordered Item
+      </div>
+
+      <div class="ui group">
+        <div class="ui bordered item">
+          Bordered Item
+        </div>
+        <div class="ui bordered item">
+          Bordered Item
+        </div>
+        <div class="ui bordered item">
+          Bordered Item
+        </div>  
+      </div>
+
+      <div class="ui vertical group">
+        <div class="ui bordered item">
+          Bordered Item
+        </div>
+        <div class="ui bordered item">
+          Bordered Item
+        </div>
+        <div class="ui bordered item">
+          Bordered Item
+        </div>  
+      </div>
+    </div>
+
+    <div class="ui item">
+      <div class="content">
+        <div class="title">Title</div>
+        <div class="subtitle">subtitle</div>
+      </div>
+    </div>
+
+    <div class="ui item">
+      <img src="https://picsum.photos/45/45" alt="">
+      <div class="content">
+        <div class="title">Title</div>
+        <div class="subtitle">subtitle</div>
+      </div>
+    </div>
+
+    <div class="ui item">
+      <img src="https://picsum.photos/45/45" alt="">
+      <div class="content">
+        <div class="title">Title</div>
+        <div class="subtitle">subtitle</div>
+      </div>
+      <div>...</div>
+    </div>
+
+    <div class="ui dropdown">
+      <label tabindex="0">Dropdown</label>
+      <menu type="context">
+        <menuitem>item1</menuitem>
+        <menuitem>item2</menuitem>
+        <menuitem>item3</menuitem>
+      </menu>
+    </div>
+    <hr class="ui" data-title="또는">
+    <div class="ui dropdown">
+      <button>Dropdown</button>
+      <menu>
+        <a class="item">
+          <img src="https://picsum.photos/45/45" alt="">
+          <div class="content">
+            <div class="title">Title</div>
+            <div class="subtitle">Subtitle</div>
+          </div>
+        </a>
+        <menuitem>item2</menuitem>
+        <menuitem>item3</menuitem>
+      </menu>
+    </div>
+
+    <div class="ui dropdown">
+      <input type="text" value="Dropdown">
+      <menu>
+        <a class="item">
+          <img src="https://picsum.photos/45/45" alt="">
+          <div class="content">
+            <div class="title">Title</div>
+            <div class="subtitle">Subtitle</div>
+          </div>
+        </a>
+        <menuitem>item2</menuitem>
+        <menuitem>item3</menuitem>
+      </menu>
+    </div>
+    asdfasdf<br/>
+    asdfasdf<br/>
+    asdfasdf<br/>
+    asdfasdf<br/>
+    asdfasdf<br/>
+    <details class="ui">
+      <summary>Details</summary>
+      Something small enough to escape casual notice.
+    </details>
+    <dialog id="drawer" class="ui drawer">
+      Hello drawer
+    </dialog>
+    <button class="ui" onclick="document.querySelector('#drawer').showModal()">open drawer</button>
   </body>
 </html>
