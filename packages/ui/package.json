@@ -5,10 +5,9 @@
   "main": "dist/style.css",
   "type": "commonjs",
   "exports": {
-    "./theme/*.css": "./dist/theme/*.css",
-    "./theme/*": "./dist/theme/*.js",
-    "./*.css": "./dist/*.css",
-    "./*": "./dist/*.js"
+    "./css/": "./dist/css/",
+    "./jss/": "./dist/jss/",
+    "./theme/": "./dist/css/theme/"
   },
   "style": "dist/style.css",
   "scripts": {
