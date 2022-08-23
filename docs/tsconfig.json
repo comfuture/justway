@@ -1,8 +1,4 @@
 {
-  "compilerOptions": {
-    "target": "es2020",
-    "module": "esnext",
-    "jsx": "preserve"
-  },
-  "moduleResolution": "node"
+  // https://v3.nuxtjs.org/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json"
 }

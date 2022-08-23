@@ -1,21 +1,18 @@
-import { LitElement, html } from 'lit';
-import { customElement } from 'lit/decorators.js';
-import style from '@justway/ui/css/button.css';
+import style from '@justway/ui/button.css';
+import { h, StyledElement } from './base';
 
-const sheet = new CSSStyleSheet();
-sheet.replace(`${style}`);
-
-@customElement('ui-button')
-export default class UIButton extends LitElement {
-
-  firstUpdated() {
-    this.renderRoot.adoptedStyleSheets = [sheet];
-  }
+class UIButton extends StyledElement {
+  static style = `${style}`
+  static props = ['class']
 
   render() {
-    return html`<button class="ui"><slot></slot></button>`;
+    return h('button', {class: `ui ${this.classList.value}`}, [
+      h('slot')
+    ])
   }
 }
+
+customElements.define('ui-button', UIButton);
 
 declare global {
   interface HTMLElementTagNameMap {

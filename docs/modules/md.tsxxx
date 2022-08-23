@@ -1,0 +1,60 @@
+import { mergeConfig } from 'vite'
+import { defineNuxtModule, extendViteConfig, extendWebpackConfig } from '@nuxt/kit'
+import vue from '@vitejs/plugin-vue'
+import markdown from 'vite-plugin-md'
+
+export default defineNuxtModule({
+  meta: {
+    name: '@justway/docs/modules/md',
+    configKey: 'md',
+    compatibility: {
+      nuxt: '^3.0.0',
+    }
+  },
+  defaults: {},
+  hooks: {},
+  async setup(moduleOptions, nuxt) {
+    nuxt.options.build.additionalExtensions.push('md')
+    if (!nuxt.options.extensions.includes('md')) {
+      nuxt.options.extensions.push('md')
+    }
+
+    extendWebpackConfig(config => {
+      if (config.resolve.extensions) {
+        config.resolve.extensions.push('.md')
+      } else {
+        config.resolve.extensions = ['.md']
+      }
+
+      config.module.rules.push({
+        test: /\.md$/,
+        use: [
+          'babel-loader',
+        ]
+      })
+    })
+
+    extendViteConfig((config) => {
+      if (config.resolve.extensions) {
+        config.resolve.extensions.push('.md')
+      } else {
+        config.resolve.extensions = ['.md']
+      }
+      config.plugins.push(
+        vue({
+          include: [/\.md$/],
+        }),
+        markdown({
+          frontmatter: true,
+          exposeFrontmatter: true,
+        })
+      )
+      config = mergeConfig(config, {
+        vue: {
+          include: [/\.md$/],
+        }
+      })
+      console.log(config.plugins)
+    })
+  }
+})

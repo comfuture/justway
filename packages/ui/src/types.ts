@@ -1,13 +1,16 @@
-export type Colorspace = 'rgb' | 'rgba' | 'hsl' | 'hsla';
-export type PercentValue = `${number}%`
+export type ThemeData = {
+  backgroundColor: string, // #fff
+  surfaceColor?: string,   // dark ? lighten(background, 0.05) Color: darken(background, 0.05)
+  primaryColor: string,
+  secondaryColor?: string,
+  accentColor?: string,
+  errorColor?: string,
 
-export type ColorSpec = {
-  colorspace: Colorspace,
-  values: (number | PercentValue)[],
-  alpha?: number | PercentValue
+  borderThickness?: string,
+  borderRadius?: string,
 }
 
 export type JuswayConfig = {
-  theme: {},
-  watch: boolean,
+  theme?: ThemeData,
+  watch?: boolean,
 }

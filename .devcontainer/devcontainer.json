@@ -20,7 +20,8 @@
 	"extensions": [
 		"dbaeumer.vscode-eslint",
 		"csstools.postcss",
-		"johnsoncodehk.volar"
+		"johnsoncodehk.volar",
+		"bradlc.vscode-tailwindcss"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

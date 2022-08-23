@@ -1,13 +1,14 @@
 button.ui, .ui.button, .ui > button, .ui > .button {
   --current-color: var(--ui-natural-color);
   --current-switch: var(--ui-switch, white);
-  @apply border-0 px-3 py-2 cursor-pointer transition ease-in-out duration-200;
-  @apply bg-[color:var(--current-color)] text-[color:var(--current-switch)] rounded-[var(--ui-border-radius)];
-  @apply font-semibold;
+  @apply border-0 px-3 py-2
+         rounded-[var(--ui-border-radius)]
+         cursor-pointer transition ease-in-out duration-200
+         bg-[color:var(--current-color)]
+         text-[color:var(--current-switch)]
+         font-semibold;
 
   &:hover:not(:disabled, .disabled) {
-    /* @apply bg-[color:hsl(var(--current-color,var(--current-color)),var(--ui-hover-lightness))]; */
-    /* @apply brightness-110 contrast-200; */
     @apply opacity-80;
   }
 
@@ -18,7 +19,9 @@ button.ui, .ui.button, .ui > button, .ui > .button {
   }
 
   &.bordered {
-    @apply bg-transparent border-[color:var(--current-color)] text-[color:var(--current-color)] border-solid border-2;
+    @apply bg-transparent border-[color:var(--current-color)]
+           text-[color:var(--current-color)]
+           border-solid border-2;
   }
 
   &.elevated {

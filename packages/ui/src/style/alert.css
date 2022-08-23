@@ -1,5 +1,7 @@
 .ui.alert {
-  @apply rounded-[var(--ui-border-radius)] p-2;
   @apply ui-variants;
-  @apply bg-[color:rgb(var(--current-color)/.5)] border-[color:var(--current-color)] text-[color:var(--ui-text-color)];
+  @apply bg-[color:rgb(var(--current-color)/.5)]
+         border-[color:var(--current-color)]
+         rounded-[var(--ui-border-radius)] p-2
+         text-[color:var(--ui-text-color)];
 }

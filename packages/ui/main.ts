@@ -4,7 +4,7 @@ import "./src/style/button.css";
 // import "./src/dialog.css";
 import "./src/style/group.css";
 // import "./src/form.css";
-import "./src/style/input.css";
+// import "./src/style/input.css";
 import "./src/style/alert.css";
 import "./src/style/card.css";
 // import "./src/section.css";
