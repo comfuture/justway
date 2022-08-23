@@ -1,4 +1,4 @@
-type ElementPropMap = {[key in string]: any};
+type ElementPropMap = { [key in string]: any };
 type ElementProps = string | ElementPropMap | HTMLElement | Array<HTMLElement | Comment>
 
 export function createElement(tagName: string, ...props: ElementProps[]): HTMLElement {
@@ -42,13 +42,13 @@ export class StyledElement extends HTMLElement {
     super();
     this.#rootStyle = document.createElement('style');
     this.#rootStyle.textContent = (this.constructor as typeof StyledElement).style
-    this.attachShadow({mode: 'open'});
+    this.attachShadow({ mode: 'open' });
     this.shadowRoot!.append(this.#rootStyle);
   }
 
   connectedCallback(): void {
     this._renderElement()
-    this.mounted();
+    this.mounted?.();
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
