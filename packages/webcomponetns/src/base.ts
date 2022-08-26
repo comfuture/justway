@@ -1,3 +1,6 @@
+import { render } from 'lit-html';
+export { html } from 'lit-html';
+
 type ElementPropMap = { [key in string]: any };
 type ElementProps = string | ElementPropMap | HTMLElement | Array<HTMLElement | Comment>
 
@@ -37,6 +40,7 @@ export class StyledElement extends HTMLElement {
 
   #rootStyle: HTMLStyleElement
   #rootElement: HTMLElement | Comment | null = null
+  // #rootElement: ShadowRoot
 
   constructor() {
     super();
@@ -58,9 +62,11 @@ export class StyledElement extends HTMLElement {
   }
 
   _renderElement(): void {
+    // const tpl = this.render()
+    // render(tpl, this.#rootElement);
     if (!this.#rootElement) {
-      this.#rootElement = this.render()
-      this.shadowRoot!.append(this.#rootElement)
+      // this.#rootElement = this.render()
+      this.shadowRoot!.append(this.#rootElement!)
     } else {
       let oldRootElement = this.#rootElement
       this.#rootElement = this.render();

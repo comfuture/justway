@@ -4,11 +4,12 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   build: {
     lib: {
-      entry: 'src/my-element.ts',
-      formats: ['es']
+      entry: 'src/index.ts',
+      name: 'justway web components',
+      fileName: (format) => `lib.${format}.js`,
     },
     rollupOptions: {
-      external: /^lit-element/,
+      external: ['lit-html', 'lit-element'],
     }
   },
   plugins: [
