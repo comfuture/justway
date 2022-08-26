@@ -31,10 +31,11 @@ menu.ui, .ui.menu {
   &.tab {
     @apply flex-row px-2 gap-2 border-solid border-0 border-b w-auto;
 
-    > li, > menuitem, > .item {
+    > li, > menuitem, > .item, > a {
       @apply -mb-[1px];
       @apply py-2 px-4 border border-solid rounded rounded-b-none;
       @apply bg-gray-200;
+      text-decoration: none;
 
       &.active {
         @apply bg-white border-b-0;
