@@ -1,9 +1,11 @@
 {
   "name": "@justway/vue",
   "version": "0.0.0",
+  "main": "./dist/lib.umd.js",
+  "module": "./dist/lib.es.js",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -14,6 +16,7 @@
     "@vitejs/plugin-vue": "^2.2.0",
     "typescript": "^4.5.4",
     "vite": "^2.8.0",
+    "vite-plugin-libcss": "^1.0.5",
     "vue-tsc": "^0.29.8"
   }
 }

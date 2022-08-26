@@ -1,10 +1,10 @@
 <script setup lang="ts">
 </script>
 <script>
-export * as style from '@justway/ui/css/button.css'
+export * as style from '@justway/ui/css/alert.css'
 </script>
 <template>
-  <button class="ui">
+  <div class="ui alert">
     <slot />
-  </button>
+  </div>
 </template>
