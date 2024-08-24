@@ -1,0 +1,108 @@
+:root {
+  --ui-background-color: #ededed;
+  --ui-panel-bg: Canvas;
+  --ui-border-radius: 0.25rem;
+  --ui-border-color: GrayText;
+  --ui-text-muted-color: GrayText;
+  --ui-text-selection-color: Highlight;
+  /* color-mix(in lab, Highlight, #fff 10%); */
+  --ui-highlight-color: #7ab300;
+  --ui-hover-color: var(--ui-text-selection-color);
+  --backdrop-color: rgba(0, 0, 0, 0.2);
+
+  --ui-outline-color: Highlight;
+
+  --ui-primary: #3c77b0;
+  --ui-positive: #7bdfa6;
+  --ui-info: #17a2b8;
+  --ui-warning: #e0c96c;
+  --ui-negative: #df7474;
+
+  /* dark mode */
+  &.dark {
+    color-scheme: dark;
+    --ui-background-color: #1a1a1a;
+    --ui-panel-bg: color-mix(in lab, var(--ui-background-color), #fff 5%);
+    --ui-border-color: rgb(50, 50, 50);
+    --ui-text-muted-color: ButtonShadow;
+
+    --backdrop-color: rgba(255, 255, 255, 0.2);
+    --ui-primary: color-mix(in lab, #3c77b0, #000 10%);
+    /* --ui-positive: color-mix(in lab, #28a745, #000 10%);
+    --ui-negative: color-mix(in lab, #dc3545, #000 10%); */
+  }
+}
+
+@supports (color-scheme: light dark)
+  and (background-color: Canvas)
+  and (color: CanvasText) {
+  :root {
+    --ui-field-color: Field;
+    --ui-bg-color: Canvas;
+    --ui-text-color: CanvasText;
+    --ui-border-color: ButtonFace;
+    --ui-text-color: CanvasText;
+  }
+}
+
+@supports (background-color: -apple-system-control-background)
+  and (color: text) {
+  :root {
+    --ui-field-color: -apple-system-opaque-tertiary-fill;
+    --ui-bg-color: -apple-system-control-background;
+    --c-text: text;
+  }
+}
+
+/* for support full height viewports */
+#__nuxt {
+  min-height: 100vh;
+}
+
+/* animations */
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(1)
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(var(--material-scale));
+    opacity: 0;
+  }
+}
+
+:focus {
+  outline-color: var(--ui-outline-color);
+}
+
+.ui {
+  /* .ui.content */
+  .content, &.content {
+    &.list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    &.columns {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+    }
+
+    &.responsible {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+      }
+    }
+  }
+}
