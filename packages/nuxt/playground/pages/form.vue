@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const demoSchema = {
+import type { JSONSchema4 } from 'json-schema';
+const demoSchema: JSONSchema4 = {
   type: 'object',
   properties: {
     name: {
@@ -54,7 +55,7 @@ const basicModel = ref({
   titles: [],
 })
 
-const complexSchema = {
+const complexSchema: JSONSchema4 = {
   "$defs": {
     "FooBar": {
       "properties": {
@@ -111,8 +112,8 @@ const complexSchema = {
     "snap": {
       "default": 42,
       "description": "this is the value of snap",
-      "exclusiveMaximum": 50,
-      "exclusiveMinimum": 30,
+      "minimum": 30,
+      "maximum": 50,
       "title": "The Snap",
       "type": "integer"
     }
@@ -123,9 +124,31 @@ const complexSchema = {
   "title": "Main",
   "type": "object"
 }
+
+const formValue = ref({
+  name: 'John Doe',
+  age: 19,
+  bio: 'Lorem ipsum dolor sit amet',
+})
 </script>
 <template>
   <section class="flex-1 container flex flex-col gap-2 p-2">
+    <ui-segment title="Form binding">
+      <ui-form v-model="formValue">
+        <ui-input required label="Name" name="name" />
+        <ui-input type="number" label="Age" name="age" v-model.number="formValue.age" />
+        <ui-input label="Bio" name="bio">
+          <template #="{ attrs, id, value, onInput }">
+            <textarea v-bind="attrs" :id :value @input="onInput"></textarea>
+          </template>
+          <template #description>
+            Please enter a short bio about yourself
+          </template>
+        </ui-input>
+        <ui-textarea label="Bio" name="bio">
+        </ui-textarea>
+      </ui-form>
+    </ui-segment>
     <ui-segment title="Basic">
       <ui-form :schema="demoSchema" v-model="basicModel" />
     </ui-segment>

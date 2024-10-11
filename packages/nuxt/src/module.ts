@@ -45,6 +45,10 @@ export default defineNuxtModule<ModuleOptions>({
       {
         name: 'useToast',
         from: resolver.resolve('runtime/composables/use-toast'),
+      },
+      {
+        name: 'useKeyboardNavigation',
+        from: resolver.resolve('runtime/composables/use-keyboard-navigation'),
       }
     ])
 

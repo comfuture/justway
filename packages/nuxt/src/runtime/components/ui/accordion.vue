@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { provide } from 'vue';
-import { useId } from '#app';
+import { useId } from '#imports';
 
 const props = defineProps<{
   segment?: boolean

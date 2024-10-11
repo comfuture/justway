@@ -82,6 +82,18 @@ const handleTabClick = (ev: MouseEvent) => {
   setActiveTab(target)
 }
 
+const handleKeypress = (ev: KeyboardEvent) => {
+  const focusNode = self.value?.querySelector('.ui.tabs header > :focus')
+  if (ev.key === 'Enter' || ev.key === ' ') {
+    ev.preventDefault()
+    setActiveTab(focusNode)
+  } else if (ev.key == 'ArrowRight') {
+    focusNode?.nextElementSibling?.focus()
+  } else if (ev.key == 'ArrowLeft') {
+    focusNode?.previousElementSibling?.focus()
+  }
+}
+
 /**
  * Find the active tab id
  */
@@ -90,7 +102,7 @@ const findActiveId = () => {
     return
   }
 
-  const tabs = Array.from(self.value.querySelectorAll<HTMLElement>('.ui.tabs header > a, .ui.tabs header > label'))
+  const tabs = Array.from<HTMLElement>(self.value.querySelectorAll('.ui.tabs header > a, .ui.tabs header > label'))
   const activeTab = tabs.find(tab => tab.classList?.contains('active'))
   if (activeTab) {
     setActiveTab(activeTab)
@@ -113,17 +125,20 @@ const renderTabStates = () => {
   if (!self.value || !activeId.value) {
     return
   }
-  const tabs = Array.from(self.value.querySelectorAll<HTMLElement>('.ui.tabs header > *'))
+  const tabs = Array.from<HTMLElement>(self.value.querySelectorAll('.ui.tabs header > *'))
   tabs.forEach(tab => {
     if (isActiveTab(tab)) {
       tab.classList.add('active')
+      tab.setAttribute('aria-selected', 'true')
+      tab.focus()
     } else {
       tab.classList.remove('active')
+      tab.setAttribute('aria-selected', 'false')
     }
   })
   const activePane = self.value.querySelector<HTMLElement>(`#${activeId.value}`)
   if (activePane) {
-    const otherPanes = Array.from(self.value.querySelectorAll<HTMLElement>('.ui.tabs > section.pane > [id]'))
+    const otherPanes = Array.from<HTMLElement>(self.value.querySelectorAll('.ui.tabs > section.pane > [id]'))
     otherPanes.forEach(pane => pane.classList.remove('active'))
     activePane.classList.add('active')
   }
@@ -140,19 +155,19 @@ defineExpose({
 })
 </script>
 <template>
-  <div ref="self" class="ui tabs" :class="{ segment }">
-    <ui-group tag="header" @click="handleTabClick">
+  <section ref="self" role="tablist" class="ui tabs" :class="{ segment }">
+    <ui-group tag="header" @click="handleTabClick" @keydown="handleKeypress">
       <slot name="tabs" />
-      <label :for="t.id" :class="{ active: t.active }" v-for="t in tabDefinitions">
+      <a :href="`#${t.id}`" :aria-controls="t.id" :class="{ active: t.active }" v-for="t in tabDefinitions">
         {{ t.title }}
-      </label>
+      </a>
     </ui-group>
     <section class="pane">
       <slot>
         <nuxt-page />
       </slot>
     </section>
-  </div>
+  </section>
 </template>
 <style>
 .ui.tabs {
@@ -174,6 +189,17 @@ defineExpose({
     border-bottom: 1px solid var(--ui-border-color);
     overflow-y: auto;
 
+    &:focus-within {
+
+      a:focus:not([aria-selected="true"]) {
+        border-bottom: 2px solid var(--ui-warning);
+        /* text-decoration-line: underline;
+          text-underline-offset: 0.2em;
+          text-decoration-style: dotted;
+          text-decoration-color: var(--ui-outline-color); */
+      }
+    }
+
     a,
     a[href^="#"],
     label[for] {
@@ -194,6 +220,10 @@ defineExpose({
 
       &.active,
       &.router-link-active {
+        border-bottom: 2px solid var(--ui-primary);
+      }
+
+      &[aria-selected="true"] {
         border-bottom: 2px solid var(--ui-primary);
       }
     }

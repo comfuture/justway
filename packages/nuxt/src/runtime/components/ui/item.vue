@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { RouteLocation, RouteLocationRaw } from '#vue-router';
-import { provide } from '#imports';
+import { provide, inject, useAttrs } from '#imports';
 
 const props = withDefaults(defineProps<{
   tag?: string,
@@ -12,11 +12,18 @@ const props = withDefaults(defineProps<{
 });
 
 provide('container', 'ui-item');
+const attrs = { ...useAttrs() }
+
+// additional attributes
+const container = inject<string>('container', '');
+if (container === 'ui-menubar') {
+  attrs.role = 'menuitem';
+}
 </script>
 <template>
-  <ui-linkable :default-tag="tag" class="ui item" :href="href" :to="to" v-bind="$attrs">
+  <ui-linkable :default-tag="tag" class="ui item" :href="href" :to="to" v-bind="attrs">
     <slot name="leading">
-      <ui-icon :name="icon" v-if="icon" />
+      <ui-icon :name="icon!" v-if="icon" />
     </slot>
     <div class="content">
       <slot />

@@ -1,23 +1,38 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import { useRoute } from '#app';
+import { ref, watch, getCurrentInstance, onMounted, useTemplateRef } from 'vue'
+import { useRoute } from 'vue-router';
 import { onClickOutside, useElementBounding } from '@vueuse/core';
 import { useFloating, offset, flip, shift, type Placement, autoUpdate } from '@floating-ui/vue'
 
 const props = withDefaults(defineProps<{
   placement?: Placement
   offset?: number
+  open?: boolean
 }>(), {
   placement: 'bottom',
   offset: 0
 })
 
-const trigger = ref<HTMLElement>() // maybe Ref<HTMLElement>
-const self = ref<HTMLElement>() // Ref<HTMLDivElement>
+const instance = getCurrentInstance()
+
+const trigger = useTemplateRef<HTMLElement>('trigger') // maybe Ref<HTMLElement>
+const self = useTemplateRef<HTMLElement>('self') // Ref<HTMLDivElement>
+
+onMounted(() => {
+  if (!trigger.value) {
+    console.warn('Popover: trigger element is not found')
+  }
+})
+
+// onMounted(() => {
+//   const el = instance?.subTree?.children?.[0].el as Element
+//   trigger.value = el as HTMLElement
+// })
 
 const open = defineModel<boolean>({
   default: false
 })
+open.value = props.open
 
 const showFunc = () => {
   open.value = true
@@ -44,7 +59,7 @@ watch(open, () => {
   } else {
     self.value?.hidePopover()
   }
-})
+}, { immediate: true })
 
 // hide popover when route changes or click outside
 const route = useRoute()
@@ -60,8 +75,9 @@ defineExpose({
 })
 </script>
 <template>
-  <span ref="trigger" class="ui popover-trigger">
-    <slot name="trigger" :show="showFunc" :hide="hideFunc" :toggle="toggleFunc" />
+  <!-- <slot name="trigger" :show="showFunc" :hide="hideFunc" :toggle="toggleFunc" /> -->
+  <span ref="trigger" class="ui popover-trigger" v-if="$slots.trigger">
+    <slot name="trigger" :is-open="open" :show="showFunc" :hide="hideFunc" :toggle="toggleFunc" />
   </span>
   <Teleport to="#teleports">
     <div class="ui popover" popover="manual" :hide="hideFunc" ref="self" :style="open ? floatingStyles : {}">

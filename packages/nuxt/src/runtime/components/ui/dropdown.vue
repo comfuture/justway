@@ -6,7 +6,7 @@ const props = withDefaults(defineProps<{
   placement?: Placement
   offset?: number
 }>(), {
-  placement: 'bottom',
+  placement: 'bottom-start',
   offset: 0
 })
 const emit = defineEmits<{

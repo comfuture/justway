@@ -76,10 +76,16 @@ defineExpose({
   </component>
 </template>
 <style>
-.ui.group.inline {
-  >* {
-    display: grid;
-    grid-template-columns: v-bind(itemColumnTemplate);
+.ui.group {
+  /* &:focus-within {
+    outline: 0.1rem solid var(--ui-outline-color);
+  } */
+
+  .inline {
+    >* {
+      display: grid;
+      grid-template-columns: v-bind(itemColumnTemplate);
+    }
   }
 }
 </style>

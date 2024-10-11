@@ -1,5 +1,6 @@
 <template>
   <section class="flex-1 container flex flex-col gap-2 p-2">
+    <ui-foo />
     <ui-segment list title="list">
       <div class="box">
         content list has a flex column layout
@@ -25,6 +26,19 @@
       <div class="box">
         but will change to column layout on small screens
       </div>
+    </ui-segment>
+
+    <ui-segment class="tabular" title="Properties">
+      <ui-property label="Name">
+        John Doe
+      </ui-property>
+      <ui-property label="Age">
+        19
+      </ui-property>
+      <ui-property label="Bio">
+        <!-- Lorem ipsum dolor sit amet -->
+        <ui-input />
+      </ui-property>
     </ui-segment>
   </section>
 </template>

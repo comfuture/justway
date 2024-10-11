@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, defineProps, withDefaults, useSlots } from 'vue'
-import { useId } from '#app';
+import { computed, withDefaults, useSlots, useId } from 'vue'
+// import { useId } from '#app';
 
 const props = withDefaults(defineProps<{
   value?: number | string

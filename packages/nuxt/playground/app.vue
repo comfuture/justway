@@ -35,14 +35,14 @@ onMounted(() => {
               <ui-item to="/menu/1">Menu 1</ui-item>
 
               <ui-accordion>
-                <dtails name="submenu">
+                <details name="submenu">
                   <summary>
                     <ui-item icon="menu">Menu 2</ui-item>
                   </summary>
                   <ui-item to="/menu/1">Menu 1</ui-item>
                   <ui-item to="/menu/2">Menu 2</ui-item>
                   <ui-item to="/menu/3">Menu 3</ui-item>
-                </dtails>
+                </details>
               </ui-accordion>
               <ui-item to="/menu/3">Menu 3</ui-item>
             </details>

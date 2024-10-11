@@ -6,7 +6,10 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    plugin(({ addComponents, addVariant }) => {
+    plugin(({ addBase, addComponents, addVariant }) => {
+      addBase({
+        '--ui-theme-color': '#333',
+      })
       addComponents({
         '.ui-variants': {
           '--current-color': 'var(--ui-theme-color)',

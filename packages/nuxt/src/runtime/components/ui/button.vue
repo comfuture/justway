@@ -17,9 +17,9 @@ const icon = computed(() => {
 })
 
 
-const grouper = inject<string>('container')
-const groupValue = inject<MaybeRef<any>>('groupValue')
-const reportValue = inject<(val: any) => void>('setValue')
+const grouper = inject<string>('container', '')
+const groupValue = inject<MaybeRef<any>>('groupValue', null)
+const reportValue = inject<(val: any) => void>('setValue', (val: any) => { })
 const localToggleState = ref(false)
 const toggleState = computed(() => {
   if (grouper === 'ui-group') {
@@ -56,7 +56,7 @@ onMounted(() => {
 const createRippleEffect = useRippleEffect(self)
 </script>
 <template>
-  <ui-linkable default-tag="button" class="ui button" :class="{ pushed: toggleState }" ref="self"
+  <ui-linkable role="button" ref="self" default-tag="button" class="ui button" :aria-pressed="toggleState"
     @mousedown.native="createRippleEffect" @click="handleClick">
     <slot name="leading">
       <ui-icon v-if="icon" :class="{ loading }" :name="icon" />
@@ -105,6 +105,10 @@ const createRippleEffect = useRippleEffect(self)
   /* transition: color 0.2s, background-color 0.2s,  */
   transition: box-shadow 0.1s;
 
+  &[aria-pressed="true"] {
+    background-color: color-mix(in lab, var(--face-color) 80%, black 20%);
+    box-shadow: inset 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
 
   &:hover {
     box-shadow: inset 0 0 0 999px rgba(0, 0, 0, 0.1);
@@ -116,11 +120,6 @@ const createRippleEffect = useRippleEffect(self)
 
   &:active {
     box-shadow: inset 0 0 0 999px rgba(0, 0, 0, 0.2);
-  }
-
-  &.pushed {
-    background-color: color-mix(in lab, var(--face-color) 80%, black 20%);
-    box-shadow: inset 0 0 2px 1px rgba(0, 0, 0, 0.2);
   }
 
   &.sm {

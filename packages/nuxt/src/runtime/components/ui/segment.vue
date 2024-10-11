@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, computed, useAttrs } from 'vue';
+import { computed, useAttrs } from 'vue';
 const props = defineProps<{
   title?: string
   subtitle?: string

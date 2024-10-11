@@ -15,6 +15,7 @@ const open = defineModel<boolean>({
 
 const contentTag = computed(() => props.form ? resolveComponent('ui-form') : 'section')
 const formId = ref(props.form ? useId() : undefined)
+const headerId = ref(useId())
 
 const contentAttrs = ref<Record<string, any>>({
   id: formId.value,
@@ -60,9 +61,9 @@ onMounted(() => {
 </script>
 <template>
   <slot name="trigger" :open="openFunc" />
-  <dialog class="ui modal" ref="dialog" v-if="renderHTML">
+  <dialog role="dialog" aria-modal="true" :aria-labelledby="headerId" class="ui modal" ref="dialog" v-if="renderHTML">
     <header>
-      <h3>
+      <h3 :id="headerId">
         <slot name="header">{{ title }}</slot>
       </h3>
       <ui-icon class="close" name="close" @click="closeFunc" />
@@ -179,7 +180,7 @@ onMounted(() => {
   }
 
   >.actions {
-    padding: 0.5rem 0.25rem;
+    padding: 0.5rem;
     border-top: 1px solid var(--ui-border-color);
     display: flex;
     justify-content: flex-end;

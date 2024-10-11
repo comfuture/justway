@@ -4,7 +4,7 @@ import { type JSONSchema4 } from 'json-schema';
 
 describe('getFieldDefintions', () => {
   it('should return correct field definitions in simple schema', () => {
-    const schema = {
+    const schema: JSONSchema4 = {
       type: 'object',
       properties: {
         name: { type: 'string', title: 'Name' },
@@ -23,7 +23,7 @@ describe('getFieldDefintions', () => {
   })
 
   it('should return correct field definitions in schema with enum', () => {
-    const schema = {
+    const schema: JSONSchema4 = {
       type: 'object',
       properties: {
         pet: { type: 'string', enum: ['cat', 'dog'], title: 'Pet' },
@@ -38,7 +38,7 @@ describe('getFieldDefintions', () => {
   })
 
   it('should correspond to the ui definition', () => {
-    const schema = {
+    const schema: JSONSchema4 = {
       type: 'object',
       properties: {
         pet: { type: 'string', enum: ['cat', 'dog'], title: 'Pet', 'ui': { 'type': 'radio' } },
@@ -54,7 +54,7 @@ describe('getFieldDefintions', () => {
   })
 
   it('should return correct field definitions in schema with oneOf', () => {
-    const schema = {
+    const schema: JSONSchema4 = {
       type: 'object',
       properties: {
         pet: { type: 'string', oneOf: [{ const: 'cat' }, { const: 'dog' }], title: 'Pet' },
@@ -70,7 +70,7 @@ describe('getFieldDefintions', () => {
   })
 
   it('should return correct field definitions in schema anyOf of types', () => {
-    const schema = {
+    const schema: JSONSchema4 = {
       type: 'object',
       properties: {
         age: { anyOf: [{ type: 'number' }, { type: 'null' }], title: 'Age' },

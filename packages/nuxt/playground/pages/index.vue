@@ -15,9 +15,54 @@ const toast = useToast()
 </script>
 <template>
   <section class="flex-1 container flex flex-col gap-2 p-2">
+    <ui-toolbar>...</ui-toolbar>
+    <ui-breadcrumb>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <span aria-current="page">Current Page</span>
+    </ui-breadcrumb>
     <ui-button class="fab">
       <ui-icon name="add" />
     </ui-button>
+
+    <ui-row>
+      <h2>Row</h2>
+      <div>Row 2</div>
+      <div>Row 3</div>
+      <template #trailing>
+        <ui-icon name="star" />
+      </template>
+    </ui-row>
+    <ui-row tag="header" inner-tag="h1">
+      <template #leading>
+        <ui-icon name="home" />
+      </template>
+      Hello
+    </ui-row>
+    <ui-menubar>
+      <ui-item href="#">Home</ui-item>
+      <ui-item href="#">About</ui-item>
+      <ui-item href="#">Contact</ui-item>
+      <ui-menu>
+        <template #label>
+          Menu
+        </template>
+        <template #menu>
+          <ui-item href="#">Item 1</ui-item>
+          <ui-item href="#">Item 2</ui-item>
+          <ui-menu>
+            <template #label>
+              Submenu
+            </template>
+            <template #menu>
+              <ui-item href="#">Item 1</ui-item>
+              <ui-item href="#">Item 2</ui-item>
+            </template>
+          </ui-menu>
+          <ui-item href="#">Item 3</ui-item>
+        </template>
+      </ui-menu>
+    </ui-menubar>
     <ui-segment>
       Segment without title
     </ui-segment>
@@ -122,7 +167,7 @@ const toast = useToast()
       </ui-segment>
     </div>
 
-    <div class="ui content responsible">
+    <ui-content class="responsible">
       <ui-segment title="Text" class="flex-1">
         <p>Text content</p>
         <p>Text content</p>
@@ -131,7 +176,7 @@ const toast = useToast()
         <p>Text content</p>
         <p>Text content</p>
       </ui-segment>
-    </div>
+    </ui-content>
 
     <ui-segment list title="Items">
       <ui-item>
@@ -317,19 +362,17 @@ const toast = useToast()
       ...
     </ui-tabs>
 
-    <ui-segment title="Standalone Tabs">
-      <ui-tabs>
-        <ui-content active title="Tab 1" class="my-2">
-          Tab 1 content
-        </ui-content>
-        <ui-content title="Tab 2" class="my-2">
-          Tab 2 content
-        </ui-content>
-        <ui-content title="Tab 3" class="my-2">
-          Tab 3 content
-        </ui-content>
-      </ui-tabs>
-    </ui-segment>
+    <ui-tabs segment title="Standalone Tabs">
+      <ui-content active title="Tab 1" class="my-2">
+        Tab 1 content
+      </ui-content>
+      <ui-content title="Tab 2" class="my-2">
+        Tab 2 content
+      </ui-content>
+      <ui-content title="Tab 3" class="my-2">
+        Tab 3 content
+      </ui-content>
+    </ui-tabs>
 
     <ui-segment title="Search Palette">
       <ui-search-palette @select="console.log">
@@ -351,24 +394,25 @@ const toast = useToast()
 
     <ui-segment list title="Progress">
       <ui-progress />
-      <ui-progress :value="50" />
+      <ui-progress class="w-full" :value="50" />
       <ui-progress label="Progress" :value="75" />
     </ui-segment>
 
-    <ui-content is="aside">
-      <ui-pagination :total="100" :page="1" />
-    </ui-content>
+    <ui-pagination :total="100" :page="1" />
+    <ui-popover open>
+      Hello, world
+    </ui-popover>
   </section>
 </template>
 <style>
 :root {
 
   /* --ui-background-color: #fff; */
-  .ui.segment>header,
+  /* .ui.segment>header,
   details.ui>summary {
     background-color: #f9f9f9;
     border-bottom: none;
-  }
+  } */
 
   /* 
   --ui-border-radius: 0.75rem;
@@ -378,12 +422,12 @@ const toast = useToast()
     border-radius: 99em;
   } */
 
-  .ui.toast>.item {
+  /* .ui.toast>.item {
     background-color: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(2px);
-  }
+  } */
 
-  .ui.tabs {
+  /* .ui.tabs {
     >header.group {
       padding: 0.25rem 0.25rem 0 0.25rem;
 
@@ -395,12 +439,12 @@ const toast = useToast()
         background-color: #fff;
         border: 1px solid #ddd;
         border-radius: 0.25rem 0.25rem 0 0;
-        border-bottom: none;
+        border-bottom-color: canvas;
       }
     }
-  }
+  } */
 
-  &.dark {
+  /* &.dark {
 
     .ui.segment>header,
     details.ui>summary {
@@ -412,6 +456,6 @@ const toast = useToast()
       background-color: rgba(0, 0, 0, 0.7);
     }
 
-  }
+  } */
 }
 </style>

@@ -122,9 +122,9 @@ const select = (candidate: SearchCandidate) => {
       <slot :items="filteredCandidates" :select="select">
         <ui-item tag="a" v-for="candidate in filteredCandidates" :key="candidate.id" @click="select(candidate)"
           style="cursor: pointer">
-          <template #leading>
+          <!-- <template #leading>
             <ui-icon :name="candidate.icon" />
-          </template>
+          </template> -->
           <h3>{{ candidate.name }}</h3>
           <p class="description">{{ candidate.description }}</p>
         </ui-item>

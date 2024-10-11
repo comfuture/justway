@@ -65,7 +65,7 @@ const makeRoute = (page: number) => {
 }
 </script>
 <template>
-  <div class="ui pagination">
+  <nav class="ui pagination">
     <template v-if="elapseFirst">
       <nuxt-link :to="makeRoute(1)" :class="{ current: 1 === props.page }">
         <kbd>1</kbd></nuxt-link>
@@ -80,7 +80,7 @@ const makeRoute = (page: number) => {
         <kbd>{{ totalPages }}</kbd>
       </nuxt-link>
     </template>
-  </div>
+  </nav>
 </template>
 <style>
 .ui.pagination {

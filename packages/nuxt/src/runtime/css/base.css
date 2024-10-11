@@ -8,7 +8,7 @@
   /* color-mix(in lab, Highlight, #fff 10%); */
   --ui-highlight-color: #7ab300;
   --ui-hover-color: var(--ui-text-selection-color);
-  --backdrop-color: rgba(0, 0, 0, 0.2);
+  --ui-backdrop-color: rgba(0, 0, 0, 0.2);
 
   --ui-outline-color: Highlight;
 
@@ -26,7 +26,7 @@
     --ui-border-color: rgb(50, 50, 50);
     --ui-text-muted-color: ButtonShadow;
 
-    --backdrop-color: rgba(255, 255, 255, 0.2);
+    --ui-backdrop-color: rgba(255, 255, 255, 0.1);
     --ui-primary: color-mix(in lab, #3c77b0, #000 10%);
     /* --ui-positive: color-mix(in lab, #28a745, #000 10%);
     --ui-negative: color-mix(in lab, #dc3545, #000 10%); */
