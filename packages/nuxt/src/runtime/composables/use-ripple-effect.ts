@@ -1,6 +1,5 @@
-import color from "color";
-import { type Ref, type MaybeRef, unref, onMounted } from "vue";
-import { useElementBounding } from "@vueuse/core";
+import { type MaybeRef, unref, onMounted } from "vue";
+import { usePreferredDark, useElementBounding } from "@vueuse/core";
 
 type ProxyElement = {
   $el: HTMLElement
@@ -17,7 +16,7 @@ export function useRippleEffect(target: MaybeRef<HTMLElement> | MaybeRef<ProxyEl
   let isRelative = false;
   const ensureElement = (): HTMLElement => {
     let el = unref(target)
-    if (!el) return
+    if (!el) throw new Error("Element not found")
     if ('$el' in el) el = el.$el as HTMLElement // XXX
     if (isRelative) return el
     // make el relative and overflow hidden
@@ -33,24 +32,28 @@ export function useRippleEffect(target: MaybeRef<HTMLElement> | MaybeRef<ProxyEl
   })
 
   const createRippleEffect = (ev: MouseEvent) => {
-    const el = ensureElement()
+    const isDark = usePreferredDark()
     try {
-      const bg = color(getComputedStyle(el).backgroundColor)
-      const rippleColor = bg.isDark() ? bg.lighten(0.3) : bg.darken(0.3)
-      el.style.setProperty("--ripple-color", rippleColor.hex());
+      const el = ensureElement()
+      if (isDark.value) {
+        el.style.setProperty("--ripple-color", 'rgba(0, 0, 0, 0.3)');
+      } else {
+        el.style.setProperty("--ripple-color", 'rgba(255, 255, 255, 0.3)');
+      }
+      const ripple = document.createElement("ins");
+      const rect = useElementBounding(el)
+      ripple.className = "ripple";
+      ripple.style.left = `${ev.x - rect.left.value}px`;
+      ripple.style.top = `${ev.y - rect.top.value}px`;
+      ripple.style.setProperty("--material-scale", '' + el.offsetWidth);
+      el.appendChild(ripple);
+      ripple.addEventListener("animationend", () => {
+        ripple.offsetParent?.removeChild(ripple);
+      });
     } catch (e) {
-      el.style.setProperty("--ripple-color", 'rgba(255, 255, 255, 0.3)');
+      console.error(e)
+      return
     }
-    const ripple = document.createElement("ins");
-    const rect = useElementBounding(el)
-    ripple.className = "ripple";
-    ripple.style.left = `${ev.x - rect.left.value}px`;
-    ripple.style.top = `${ev.y - rect.top.value}px`;
-    ripple.style.setProperty("--material-scale", '' + el.offsetWidth);
-    el.appendChild(ripple);
-    ripple.addEventListener("animationend", () => {
-      ripple.offsetParent?.removeChild(ripple);
-    });
   }
   return createRippleEffect
 }

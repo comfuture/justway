@@ -36,7 +36,6 @@
     "@types/json-schema": "^7.0.15",
     "@vueuse/core": "^10.11.1",
     "@vueuse/nuxt": "^10.11.1",
-    "color": "^4.2.3",
     "ts-dot-prop": "^2.1.4"
   },
   "devDependencies": {
