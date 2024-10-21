@@ -1,14 +1,18 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{
   title?: string
   centered?: boolean
   responsible?: boolean
-}>();
+}>()
+
 const drawerVisible = ref(false)
 const toggleDrawer = () => {
   drawerVisible.value = !drawerVisible.value
 }
 </script>
+
 <template>
   <section class="ui scaffold">
     <slot name="appbar" :toggle-drawer="toggleDrawer">
@@ -33,6 +37,7 @@ const toggleDrawer = () => {
     </section>
   </section>
 </template>
+
 <style>
 .ui.scaffold {
   background-color: var(--ui-background-color);
@@ -50,7 +55,7 @@ const toggleDrawer = () => {
   }
 
   >.\* {
-    width: var(--ui-container-width, 100%);
+    max-width: var(--ui-container-width, 100%);
     background-color: var(--ui-background-color);
   }
 
@@ -63,7 +68,7 @@ const toggleDrawer = () => {
 
     .container {
       /* @apply flex items-center gap-4 p-2 */
-      width: var(--ui-container-width, 100%);
+      max-width: var(--ui-container-width, 100%);
       display: flex;
       gap: 0.25rem;
       align-items: center;
