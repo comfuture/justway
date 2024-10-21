@@ -8,6 +8,7 @@ const props = defineProps<{
   // content classes
   list?: boolean
   columns?: boolean
+  wrap?: boolean
   responsible?: boolean
   table?: boolean | Record<string, any>[]
   form?: boolean | Record<string, any>
