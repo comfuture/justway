@@ -77,7 +77,7 @@ if (isWithinForm && !value.value) {
     >input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="range"]),
     >select,
     >textarea {
-      width: 100%;
+      /* width: 100%; */
       padding: 0.25rem 0.5rem;
       border: 1px solid var(--ui-border-color);
       border-radius: var(--ui-border-radius);
