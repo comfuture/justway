@@ -1,14 +1,15 @@
 :root {
-  --ui-background-color: #ededed;
+  /* --ui-background-color: #ededed; */
+  --ui-background-color: color-mix(in lab, Canvas, #000 2%);
   --ui-panel-bg: Canvas;
   --ui-border-radius: 0.25rem;
   --ui-border-color: GrayText;
   --ui-text-muted-color: GrayText;
   --ui-text-selection-color: Highlight;
-  /* color-mix(in lab, Highlight, #fff 10%); */
   --ui-highlight-color: #7ab300;
   --ui-hover-color: var(--ui-text-selection-color);
   --ui-backdrop-color: rgba(0, 0, 0, 0.2);
+  --ui-backdrop-filter: blur(1px);
 
   --ui-outline-color: Highlight;
 
@@ -18,12 +19,16 @@
   --ui-warning: #e0c96c;
   --ui-negative: #df7474;
 
+  --ui-container-width: 1200px;
+
   /* dark mode */
   &.dark {
     color-scheme: dark;
-    --ui-background-color: #1a1a1a;
+    /* --ui-background-color: #1a1a1a; */
+    --ui-background-color: color-mix(in lab, Canvas, #fff 2%);
     --ui-panel-bg: color-mix(in lab, var(--ui-background-color), #fff 5%);
     --ui-border-color: rgb(50, 50, 50);
+    --ui-border-color: var(--ui-panel-bg);
     --ui-text-muted-color: ButtonShadow;
 
     --ui-backdrop-color: rgba(255, 255, 255, 0.1);
@@ -32,6 +37,18 @@
     --ui-negative: color-mix(in lab, #dc3545, #000 10%); */
   }
 }
+/* 
+@supports (color-scheme: dark) {
+  :root {
+    --ui-background-color: color-mix(in lab, Canvas, #fff 2%);
+    --ui-panel-bg: color-mix(in lab, var(--ui-background-color), #fff 5%);
+    --ui-border-color: var(--ui-panel-bg);
+    --ui-text-muted-color: ButtonShadow;
+  
+    --ui-backdrop-color: rgba(255, 255, 255, 0.1);
+    --ui-primary: color-mix(in lab, #3c77b0, #000 10%);
+  }
+} */
 
 @supports (color-scheme: light dark)
   and (background-color: Canvas)
@@ -45,6 +62,7 @@
   }
 }
 
+/** Support for Safari */
 @supports (background-color: -apple-system-control-background)
   and (color: text) {
   :root {
@@ -57,6 +75,16 @@
 /* for support full height viewports */
 #__nuxt {
   min-height: 100vh;
+}
+
+fieldset {
+  border-width: 1px;
+  border-radius: var(--ui-border-radius);
+  border-color: var(--ui-border-color);
+
+  legend {
+    padding: 0 0.5rem;
+  }
 }
 
 /* animations */
@@ -81,28 +109,7 @@
   outline-color: var(--ui-outline-color);
 }
 
-.ui {
-  /* .ui.content */
-  .content, &.content {
-    &.list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    &.columns {
-      display: flex;
-      flex-direction: row;
-      gap: 0.5rem;
-    }
-
-    &.responsible {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      @media screen and (min-width: 768px) {
-        flex-direction: row;
-      }
-    }
-  }
+[popover] {
+  border: 0;
 }
+

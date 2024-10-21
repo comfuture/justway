@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
-  label: string
+  label?: string
 }>(), {
   label: 'Toolbar'
 })

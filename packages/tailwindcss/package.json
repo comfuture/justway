@@ -8,7 +8,7 @@
     "build": "prejss-cli"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@justway/ui": "workspace:^",
     "autoprefixer": "^10.4.19",

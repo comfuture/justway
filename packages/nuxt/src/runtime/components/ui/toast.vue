@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue';
-import { useState } from '#app';
 import { useTimeoutFn } from '@vueuse/core';
 import { messages, type ToastMessage } from '../../composables/use-toast'
 
@@ -30,7 +29,7 @@ watchEffect(() => {
         <template #leading>
           <ui-icon :name="iconName(message.type)" :class="message.type" />
         </template>
-        <h2 v-if="message.title">{{ message.title }}</h2>
+        <h3 v-if="message.title">{{ message.title }}</h3>
         <p>{{ message.message }}</p>
       </ui-item>
     </transition-group>
@@ -68,6 +67,7 @@ watchEffect(() => {
   margin-top: 0;
   padding: 1rem;
   background-color: transparent;
+  border: 0;
 
   &:popover-open {
     /* @apply flex flex-col gap-3 top-0 bottom-0 right-0; */
