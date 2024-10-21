@@ -90,7 +90,7 @@ const createRippleEffect = useRippleEffect(self)
     --face-color: var(--ui-negative);
   }
 
-  --ui-border-color: #999;
+  border-width: 0;
   border-radius: var(--ui-border-radius);
   background-color: var(--face-color);
   color: var(--text-color);
@@ -103,7 +103,7 @@ const createRippleEffect = useRippleEffect(self)
   text-align: center;
   white-space: nowrap;
   /* transition: color 0.2s, background-color 0.2s,  */
-  transition: box-shadow 0.1s;
+  transition: background-color box-shadow 0.1s;
 
   &[aria-pressed="true"] {
     background-color: color-mix(in lab, var(--face-color) 80%, black 20%);
