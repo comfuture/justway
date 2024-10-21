@@ -212,6 +212,7 @@ defineExpose({
       background-color: transparent;
       color: var(--ui-text-color);
       cursor: pointer;
+      text-decoration: none;
       transition: border-bottom-color 0.2s;
 
       &:hover {
