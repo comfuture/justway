@@ -33,7 +33,7 @@ progress.ui {
   -webkit-appearance: none;
 
   &::-webkit-progress-bar {
-    background-color: var(--ui-border-color);
+    background-color: var(--ui-background-color);
     border-radius: var(--ui-border-radius);
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   }
