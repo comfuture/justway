@@ -115,12 +115,15 @@ onMounted(() => {
 .ui.modal {
   background-color: var(--ui-panel-bg, canvas);
   box-shadow: 0 0 1rem rgba(0, 0, 0, .2);
-  overflow-y: auto;
+  /* overflow-y: auto; */
+  overflow: visible;
   padding: 0;
   width: fit-content;
   min-width: calc(100vw - 2rem);
   max-width: calc(100vw - 2rem);
   border-radius: var(--ui-border-radius);
+  /* border-color: var(--ui-border-color); */
+  border-width: 0;
 
   &:focus {
     outline: none;
@@ -161,6 +164,7 @@ onMounted(() => {
     @apply flex justify-between items-center; */
 
     h3 {
+      margin: 0;
       display: inline-flex;
       gap: 0.5rem;
       /* @apply flex gap-2; */
@@ -191,7 +195,7 @@ onMounted(() => {
   &::backdrop {
     background-color: var(--ui-backdrop-color, rgba(0, 0, 0, 0.2));
     /* @apply bg-black/30; */
-    backdrop-filter: blur(1px);
+    backdrop-filter: var(--ui-backdrop-filter);
   }
 }
 </style>
