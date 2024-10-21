@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<{
     <slot name="trailing" />
   </component>
 </template>
-<style scoped>
+<!-- <style scoped>
 :deep() {
   display: flex;
   justify-items: center;
@@ -33,4 +33,4 @@ const props = withDefaults(defineProps<{
     gap: 0.25rem;
   }
 }
-</style>
+</style> -->
