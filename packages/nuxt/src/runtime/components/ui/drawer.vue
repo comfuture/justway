@@ -3,9 +3,11 @@ import { defineProps, ref, onMounted, computed, watch, nextTick } from 'vue'
 import { useRoute } from '#imports'
 import { useWindowSize } from '@vueuse/core';
 
+type VisibleOptions = boolean | 'responsive' | 'auto'
+
 const props = defineProps<{
   menu?: boolean
-  visible?: boolean
+  visible?: VisibleOptions
 }>()
 const open = defineModel<boolean>({
   required: false,
@@ -35,11 +37,9 @@ watch(open, (value) => {
   nextTick(() => {
     if (value) {
       if (!self.value?.hasAttribute('popover')) return;
-      console.log('show popover')
       self.value?.showPopover()
     } else {
       if (!self.value?.hasAttribute('popover')) return;
-      console.log('hide popover')
       self.value?.hidePopover()
     }
   })
@@ -50,11 +50,18 @@ watch(() => route.fullPath, () => {
   open.value = false
 })
 
+const handleToggle = (e: Event) => {
+  const toggleEvent = e as CustomEvent<ToggleEvent>;
+  open.value = toggleEvent.detail.newState === 'open';
+}
 onMounted(() => {
-  self.value?.addEventListener('toggle', (e: ToggleEvent) => {
-    open.value = e.newState === 'open'
-  })
+  self.value?.addEventListener('toggle', handleToggle)
 })
+
+onBeforeUnmount(() => {
+  self.value?.removeEventListener('toggle', handleToggle)
+})
+
 </script>
 <template>
   <aside v-bind="drawerAttrs" class="ui drawer" ref="self">
