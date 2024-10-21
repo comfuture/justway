@@ -12,10 +12,22 @@ onMounted(() => {
 })
 const buttonGroupValue = ref('2')
 const toast = useToast()
+
+const tagsCandidates = ref([
+  'Apple',
+  'Banana',
+  'Cherry',
+  'Date',
+  'Elderberry',
+  'Fig',
+  'Grape',
+  'Honeydew',
+])
 </script>
 <template>
-  <section class="flex-1 container flex flex-col gap-2 p-2">
+  <ui-content class="list">
     <ui-toolbar>...</ui-toolbar>
+    <nuxt-link :to="{ name: 'scaffold' }">Scaffold</nuxt-link>
     <ui-breadcrumb>
       <a href="/">Home</a>
       <a href="/about">About</a>
@@ -168,11 +180,11 @@ const toast = useToast()
     </div>
 
     <ui-content class="responsible">
-      <ui-segment title="Text" class="flex-1">
+      <ui-segment title="Text" class="flex-1" style="flex: 1">
         <p>Text content</p>
         <p>Text content</p>
       </ui-segment>
-      <ui-segment title="Text" class="flex-[2]">
+      <ui-segment title="Text" class="flex-[2]" style="flex: 2">
         <p>Text content</p>
         <p>Text content</p>
       </ui-segment>
@@ -224,7 +236,7 @@ const toast = useToast()
         <ui-input label="Name" />
         <ui-input label="Email" />
         <ui-input label="Password" type="password" />
-        <ui-tags-input />
+        <ui-tags-input label="Tags" :candidates="tagsCandidates" />
         <template #actions="{ close, formId }">
           <ui-button @click="close">Cancel</ui-button>
           <ui-button type="submit" :form="formId" class="primary" @click="close">Submit</ui-button>
@@ -402,7 +414,7 @@ const toast = useToast()
     <ui-popover open>
       Hello, world
     </ui-popover>
-  </section>
+  </ui-content>
 </template>
 <style>
 :root {
