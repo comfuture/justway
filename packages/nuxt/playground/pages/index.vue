@@ -94,19 +94,21 @@ const tagsCandidates = ref([
       <ui-icon name="star" filled class="text-yellow-500" />
     </ui-segment>
 
-    <ui-segment columns title="Buttons">
-      <ui-button>Button</ui-button>
-      <ui-button class="primary">Primary</ui-button>
-      <ui-button icon="home">Home</ui-button>
-      <ui-button loading>Loading</ui-button>
-      <ui-button class="bg-blue-500">Blue</ui-button>
+    <ui-segment list title="Buttons">
+
+      <ui-content items>
+        <ui-button>Button</ui-button>
+        <ui-button class="primary">Primary</ui-button>
+        <ui-button icon="home">Home</ui-button>
+        <ui-button loading>Loading</ui-button>
+        <ui-button class="bg-blue-500">Blue</ui-button>
+      </ui-content>
       <div class="content columns">
         <ui-button class="success">Success</ui-button>
         <ui-button class="warning">Warning</ui-button>
         <ui-button class="danger">Danger</ui-button>
       </div>
 
-      {{ buttonGroupValue }}
       <ui-group v-model="buttonGroupValue">
         <ui-button value="1">One</ui-button>
         <ui-button value="2">Two</ui-button>
@@ -169,22 +171,22 @@ const tagsCandidates = ref([
     </ui-segment>
 
     <div class="ui content responsible">
-      <ui-segment title="Text" class="grow" content-class="p-8">
+      <ui-segment title="Text" class="*">
         <p>Text content</p>
         <p>Text content</p>
       </ui-segment>
-      <ui-segment title="Text" class="grow">
+      <ui-segment title="Text" style="width: 300px">
         <p>Text content</p>
         <p>Text content</p>
       </ui-segment>
     </div>
 
     <ui-content class="responsible">
-      <ui-segment title="Text" class="flex-1" style="flex: 1">
+      <ui-segment title="Text" class="*">
         <p>Text content</p>
         <p>Text content</p>
       </ui-segment>
-      <ui-segment title="Text" class="flex-[2]" style="flex: 2">
+      <ui-segment title="Text" class="**">
         <p>Text content</p>
         <p>Text content</p>
       </ui-segment>

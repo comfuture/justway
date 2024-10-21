@@ -73,6 +73,7 @@ onMounted(() => {
 <style lang="postcss">
 body {
   /* color-scheme: light dark; */
+  margin: 0;
   @apply min-h-screen;
   background-color: var(--ui-background-color);
 }
