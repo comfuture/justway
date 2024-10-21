@@ -151,7 +151,7 @@ const select = (candidate: SearchCandidate) => {
 
   >header {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     border: none;
     border-bottom: 1px solid var(--ui-border-color);
     border-radius: var(--ui-border-radius, 0.25rem) var(--ui-border-radius, 0.25rem) 0 0;
@@ -163,6 +163,7 @@ const select = (candidate: SearchCandidate) => {
     }
 
     input[type="search"] {
+      border: none;
       border-radius: 0 var(--ui-border-radius, 0.25rem) 0 0;
       padding: 0.75rem;
       width: 100%;
