@@ -56,6 +56,19 @@ if (container === 'ui-menubar') {
       font-weight: 600;
       white-space: nowrap;
       text-overflow: ellipsis;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 1.25rem;
+    }
+
+    h2 {
+      font-size: 1.125rem;
+    }
+
+    h3 {
+      font-size: 1rem;
     }
 
     >.description {
