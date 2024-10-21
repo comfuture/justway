@@ -54,7 +54,7 @@ const attrs = useAttrs();
   flex-direction: column;
   /* @apply bg-[color:var(--ui-bg-color)] text-[color:var(--ui-text-color)] border border-[color:var(--ui-border-color)] rounded flex flex-col; */
 
-  @media (prefers-color-scheme: dark) {
+  @media (color-scheme: dark) {
     border: none;
   }
 
@@ -69,6 +69,7 @@ const attrs = useAttrs();
     @apply bg-[color:var(--ui-bg-color)] text-[color:var(--ui-text-color)]; */
 
     .title {
+      margin: 0 0;
       font-weight: 600;
       /* @apply font-semibold; */
     }
