@@ -86,9 +86,14 @@ const makeRoute = (page: number) => {
 .ui.pagination {
   display: flex;
   gap: 0.25rem;
+  margin: 0.25rem 0;
   align-items: center;
+  color: var(--ui-text-color);
 
-  &>a {
+  >a {
+    text-decoration: none;
+    color: var(--ui-text-color);
+
     &.current {
       color: var(--ui-primary);
     }
