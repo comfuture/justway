@@ -20,13 +20,13 @@ const value = defineModel<T>({
   required: false,
 })
 
-const setValue = (val: any) => {
+const setValue = (val: T) => {
   value.value = val
 }
 
 const onInput = (event: Event) => {
   const target = event.target as HTMLInputElement
-  value.value = target.value as any
+  value.value = target.value as T
 }
 
 const id = props.id ?? useId()
@@ -39,27 +39,27 @@ if (isWithinForm && !value.value) {
   const formModel = inject<Ref<Record<string, T>>>('form-model', ref({}))
   if (formModel && props.name) {
     value.value = formModel.value[props.name] // retrieve value from form model
-    watch(value, (val: any) => {
+    watch(value, (val: unknown) => {
       // XXX: if value is empty, vue's watch treats it as empty string ''
-      formModel.value[props.name!] = val // update value in form model
+      formModel.value[props.name!] = val as T// update value in form model
     })
   }
 }
 </script>
 <template>
   <div class="ui input">
-    <label :for="id" v-if="hasLabel">
+    <label v-if="hasLabel" :for="id">
       <slot name="label">
         {{ label }}
       </slot>
     </label>
-    <div class="input-group">
+    <div class="*">
       <slot :id="id" :attrs="$attrs" :value="value" :set-value="setValue" :on-input="onInput">
-        <input :id="id" :name="name" :type="type" v-bind="$attrs" v-model="value" />
+        <input :id="id" v-model="value" :name="name" :type="type" v-bind="$attrs">
       </slot>
     </div>
   </div>
-  <p class="description" v-if="slots?.description">
+  <p v-if="slots?.description" class="description">
     <slot name="description" />
   </p>
 </template>
@@ -69,7 +69,7 @@ if (isWithinForm && !value.value) {
   flex-direction: column;
   gap: 0.25rem;
 
-  .input-group {
+  label+* {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
@@ -78,7 +78,8 @@ if (isWithinForm && !value.value) {
     >select,
     >textarea {
       /* width: 100%; */
-      padding: 0.25rem 0.5rem;
+      padding: 0.5rem;
+      /* 0.25rem 0.5rem; */
       border: 1px solid var(--ui-border-color);
       border-radius: var(--ui-border-radius);
     }

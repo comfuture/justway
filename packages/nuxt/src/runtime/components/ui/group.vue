@@ -10,11 +10,11 @@ const props = withDefaults(defineProps<{
   itemColumnTemplate: '' // 'repeat(auto-fill, minmax(0, auto))'
 })
 
-const value = defineModel<any>({
+const value = defineModel<unknown>({
   default: () => null
 })
 
-const setValue = (val: any) => {
+const setValue = (val: unknown) => {
   value.value = val
 }
 
@@ -27,6 +27,7 @@ const itemColumnTemplate = ref(initialItemColumnTemplate)
 const grouper = ref<HTMLElement>()
 const groupWidths = ref<Record<string, number>>({})
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isTargetGroup(el: any): el is HTMLElement {
   return el.hasAttribute?.('data-group') ?? false
 }
@@ -71,8 +72,8 @@ defineExpose({
 })
 </script>
 <template>
-  <component :is="tag" :class="['ui group', { inline: !!itemColumnTemplate }]" ref="grouper">
-    <slot :value="value"></slot>
+  <component :is="tag" ref="grouper" :class="['ui group', { inline: !!itemColumnTemplate }]">
+    <slot :value="value" />
   </component>
 </template>
 <style>
