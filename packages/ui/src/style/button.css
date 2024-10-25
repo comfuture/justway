@@ -1,45 +1,156 @@
-button.ui, .ui.button, .ui > button, .ui > .button {
-  --current-color: var(--ui-natural-color);
-  --current-switch: var(--ui-switch, white);
-  @apply border-0 px-3 py-2
-         rounded-[var(--ui-border-radius)]
-         cursor-pointer transition ease-in-out duration-200
-         bg-[color:var(--current-color)]
-         text-[color:var(--current-switch)]
-         font-semibold;
+.ui.button {
+  --ui-face-color: var(--ui-button-face, ButtonFace);
+  --ui-text-color: var(--ui-button-text, ButtonText);
 
-  &:hover:not(:disabled, .disabled) {
-    @apply opacity-80;
+  &.primary {
+    --ui-face-color: var(--ui-primary-color);
+    --ui-text-color: var(--ui-primary-text-color, ButtonText);
   }
 
-  @apply ui-variants;
-
-  &.text {
-    @apply bg-transparent text-[color:var(--current-color)];
+  &.success {
+    --ui-face-color: var(--ui-positive-color);
+    --ui-text-color: var(--ui-positive-text-color, ButtonText);
   }
 
-  &.bordered {
-    @apply bg-transparent border-[color:var(--current-color)]
-           text-[color:var(--current-color)]
-           border-solid border-2;
+  &.danger,
+  &.error {
+    --ui-face-color: var(--ui-negative-color);
+    --ui-text-color: var(--ui-negative-text-color, ButtonText);
   }
 
-  &.elevated {
-    &:not(.text) {
-      @apply shadow-md;
-      &:hover {
-        --tw-shadow-color: var(--current-color);
-        @apply shadow-lg;
-      }
+  &.warning {
+    --ui-face-color: var(--ui-warning-color);
+    --ui-text-color: var(--ui-warning-text-color, ButtonText);
+  }
+
+  &.outline {
+    --ui-face-color: currentColor;
+    --ui-border-color: var(--ui-face-color, CanvasText);
+    background-color: transparent;
+    color: var(--ui-face-color, CanvasText);
+    border-width: var(--ui-border-width, 1px);
+    border-style: solid;
+    border-color: var(--ui-border-color);
+  }
+
+  border-width: 0;
+  border-radius: var(--ui-border-radius);
+  background-color: var(--ui-face-color);
+  color: var(--ui-text-color);
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  /* transition: color 0.2s, background-color 0.2s,  */
+  transition: background-color box-shadow 0.1s;
+
+  &[aria-pressed="true"] {
+    background-color: color-mix(in lab, var(--ui-face-color) 80%, black 20%);
+    box-shadow: inset 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  &:hover {
+    box-shadow: inset 0 0 0 999px rgba(0, 0, 0, 0.1);
+
+    @media (color-scheme: dark) {
+      box-shadow: inset 0 0 0 999px rgba(255, 255, 255, 0.2);
     }
-    &.text {
-      text-shadow: 2px 1px 2px alpha(var(--current-color), 0.9);
+  }
+
+  &:active {
+    box-shadow: inset 0 0 0 999px rgba(0, 0, 0, 0.2);
+  }
+
+  &.sm {
+    padding: 0.37rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 0.125rem;
+  }
+
+  &.fab {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* @apply fixed bottom-4 right-4 w-12 h-12 rounded-full aspect-square shadow-lg;
+    @apply flex items-center justify-center; */
+  }
+
+  ins.ripple {
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background-color: var(--ripple-color);
+    position: absolute;
+    /* @apply w-1 h-1 absolute rounded-full bg-[color:var(--ripple-color)]; */
+    animation: ripple 0.5s linear;
+  }
+
+  i.material-symbols-outlined {
+    font-size: 1.25rem;
+    line-height: 1;
+    margin-right: 0.5rem;
+
+    &.loading {
+      animation: spin 1s linear infinite;
     }
   }
 
-  @apply disabled:opacity-25 disabled:cursor-not-allowed disabled:select-none;
+  &.link {
+    display: inline-flex;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
 
-  &:focus {
-    @apply ring-1;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &.outline {
+    border: 1px solid currentColor;
+    background-color: transparent;
+  }
+
+  &.circular {
+    border-radius: 50%;
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: var(--ui-disabled);
+    color: var(--ui-disabled-text);
+    cursor: not-allowed;
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+.ui.group {
+  >.ui.button {
+    border-radius: 0;
+    border-right: none;
+
+    +.ui.button {
+      border-left: 1px solid color-mix(in lab, var(--ui-face-color) 80%, black 20%);
+    }
+
+    &:first-child {
+      border-radius: var(--ui-border-radius) 0 0 var(--ui-border-radius);
+    }
+
+    &:last-child {
+      border-radius: 0 var(--ui-border-radius) var(--ui-border-radius) 0;
+    }
   }
 }
