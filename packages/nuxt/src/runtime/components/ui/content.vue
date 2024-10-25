@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script lang="tsx">
 import { inject, h } from 'vue'
 import type { TabDefinition } from './tabs.vue'
@@ -21,6 +22,7 @@ export default defineComponent({
 
     // if id is not provided, generate a new id
     const id: string = attrs.id as string ?? useId()
+    const active = ref(props.active)
 
     if (container === 'ui-accordion') {
       // render accordion content using details/summary
@@ -28,19 +30,23 @@ export default defineComponent({
       const handleToggle = (event: Event) => {
         event.preventDefault()
         event.stopPropagation()
-        props.active = !props.active
+        active.value = !active.value
         const el = event.target as HTMLDetailsElement
         el.setAttribute('aria-expanded', el.open ? 'true' : 'false')
       }
       return () => (
-        <details id={id} class="ui" name={name} open={props.active} {...attrs} aria-expanded={props.active ? 'true' : 'false'} onToggle={handleToggle}>
-          <summary aria-controls={id}>
-            {slots.header?.() ?? props.title}
-          </summary>
-          <div class="content" >
-            {slots.default?.()}
-          </div>
-        </details>
+        h('details', {
+          id,
+          class: 'ui',
+          name,
+          open: active.value,
+          ...attrs,
+          'aria-expanded': active.value,
+          onToggle: handleToggle,
+        }, [
+          h('summary', { 'aria-controls': id }, slots.header?.() ?? props.title),
+          h('div', { class: 'content' }, slots.default?.()),
+        ])
       )
     } else if (container === 'ui-tabs') {
       // render tabs content and add tab to the ui-tab component
@@ -52,10 +58,18 @@ export default defineComponent({
       // render tab content
       // return () => h('section', { id, class: ['content', { active: props.active }] }, slots.default?.())
       return () => (
-        <section role="tabpanel" aria-label={props.title} id={id} class={['content', { active: props.active }]} {...props} {...attrs}>
-          {container}
-          {slots.default?.()}
-        </section>
+        h('section', {
+          role: 'tabpanel',
+          'aria-label': props.title,
+          id,
+          class: ['content', { active: props.active }],
+          ...props,
+          ...attrs,
+        },
+          [
+            slots.default?.()
+          ]
+        )
       )
     } else {
       // render normal content
@@ -65,13 +79,6 @@ export default defineComponent({
         hasHeader && h('header', {}, slots.header?.() ?? props.title),
         slots.default?.(),
       ])
-      // XXX: type inference fails here
-      // return () => (
-      //   <Tag class="ui content" { ...props } { ...attrs }>
-      //     { hasHeader && <header>{ slots.header?.() ?? props.title }</header> }
-      //     { slots.default?.() }
-      //   </Tag>
-      // )
     }
   }
 })
@@ -86,6 +93,14 @@ export default defineComponent({
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+
+      @media screen and (max-width: 768px) {
+        >.ui.segment {
+          border-radius: 0;
+          border-left: 0;
+          border-right: 0;
+        }
+      }
     }
 
     &.columns,
