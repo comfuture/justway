@@ -7,7 +7,7 @@ export default createConfigForNuxt({
     // Rules for module authors
     tooling: true,
     // Rules for formatting
-    stylistic: true,
+    stylistic: false,
   },
   dirs: {
     src: [
@@ -17,4 +17,13 @@ export default createConfigForNuxt({
 })
   .append(
     // your custom flat config here...
+    {
+      rules: {
+        'vue/multi-word-component-names': 'off',
+        'vue/require-default-prop': 'off',
+        'vue/no-dupe-keys': 'off',
+        'vue/attributes-order': 'off',
+        'vue/first-attribute-linebreak': 'off',
+      },
+    }
   )
