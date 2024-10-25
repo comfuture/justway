@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { ref, provide, onMounted, nextTick } from '#imports';
 
@@ -7,6 +8,7 @@ export type TabDefinition = {
   active?: boolean
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{
   segment?: boolean
 }>()
@@ -40,7 +42,7 @@ const addTab = (tab: TabDefinition) => {
  * @param id {string | HTMLElement} Tab(id) to activate
  */
 const setActiveTab = (id: string | HTMLElement) => {
-  const argIsString = (id: any): id is string => typeof id === 'string'
+  const argIsString = (id: unknown): id is string => typeof id === 'string'
   if (!argIsString(id)) {
     const el = id as HTMLElement
     let idString = ''
@@ -158,7 +160,7 @@ defineExpose({
   <section ref="self" role="tablist" class="ui tabs" :class="{ segment }">
     <ui-group tag="header" @click="handleTabClick" @keydown="handleKeypress">
       <slot name="tabs" />
-      <a :href="`#${t.id}`" :aria-controls="t.id" :class="{ active: t.active }" v-for="t in tabDefinitions">
+      <a v-for="t in tabDefinitions" :key="t.id" :href="`#${t.id}`" :aria-controls="t.id" :class="{ active: t.active }">
         {{ t.title }}
       </a>
     </ui-group>
@@ -192,7 +194,7 @@ defineExpose({
     &:focus-within {
 
       a:focus:not([aria-selected="true"]) {
-        border-bottom: 2px solid var(--ui-warning);
+        border-bottom: 2px solid var(--ui-text-selection-color);
         /* text-decoration-line: underline;
           text-underline-offset: 0.2em;
           text-decoration-style: dotted;
@@ -216,16 +218,16 @@ defineExpose({
       transition: border-bottom-color 0.2s;
 
       &:hover {
-        border-bottom: 2px solid var(--ui-warning);
+        border-bottom: 2px solid var(--ui-text-selection-color);
       }
 
       &.active,
       &.router-link-active {
-        border-bottom: 2px solid var(--ui-primary);
+        border-bottom: 2px solid var(--ui-primary-color);
       }
 
       &[aria-selected="true"] {
-        border-bottom: 2px solid var(--ui-primary);
+        border-bottom: 2px solid var(--ui-primary-color);
       }
     }
   }

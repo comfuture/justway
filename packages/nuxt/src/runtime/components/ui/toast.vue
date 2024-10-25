@@ -62,6 +62,7 @@ watchEffect(() => {
 }
 
 .ui.toast {
+  /* --ui- */
   /* @apply mr-0 mt-0 p-4 bg-transparent; */
   margin-right: 0;
   margin-top: 0;

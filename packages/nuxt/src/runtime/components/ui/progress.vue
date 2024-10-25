@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, withDefaults, useSlots, useId } from 'vue'
-// import { useId } from '#app';
 
 const props = withDefaults(defineProps<{
   value?: number | string
@@ -17,7 +16,7 @@ const id = useId()
 const percentValue = computed(() => Number(props.value) / Number(props.max))
 </script>
 <template>
-  <label :for="id" v-if="hasLabel">
+  <label v-if="hasLabel" :for="id">
     <slot name="label">
       {{ label }}
     </slot>
@@ -40,7 +39,7 @@ progress.ui {
 
   &::-webkit-progress-value {
     border-radius: var(--ui-border-radius);
-    background-color: var(--ui-primary);
+    background-color: var(--ui-primary-color);
 
     &::before {
       content: attr(value) '%';

@@ -95,7 +95,7 @@ const makeRoute = (page: number) => {
     color: var(--ui-text-color);
 
     &.current {
-      color: var(--ui-primary);
+      color: var(--ui-primary-color);
     }
 
     kbd {
