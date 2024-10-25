@@ -20,6 +20,7 @@ const icon = computed(() => {
 
 const grouper = inject<string>('container', '')
 const groupValue = inject<MaybeRef<unknown>>('groupValue', null)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const reportValue = inject<(val: unknown) => void>('setValue', (val: unknown) => { })
 const localToggleState = ref(false)
 const toggleState = computed(() => {

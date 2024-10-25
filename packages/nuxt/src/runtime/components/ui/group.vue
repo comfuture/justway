@@ -78,9 +78,12 @@ defineExpose({
 </template>
 <style>
 .ui.group {
-  /* &:focus-within {
+  width: fit-content;
+  border-radius: var(--ui-border-radius);
+
+  &:focus-within {
     outline: 0.1rem solid var(--ui-outline-color);
-  } */
+  }
 
   .inline {
     >* {
