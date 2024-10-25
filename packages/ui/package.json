@@ -5,7 +5,7 @@
   "main": "dist/style.css",
   "type": "commonjs",
   "exports": {
-    "./css/": "./dist/css/",
+    "./style/": "./src/style/",
     "./jss/": "./dist/jss/",
     "./theme/": "./dist/css/theme/"
   },

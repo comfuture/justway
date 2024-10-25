@@ -1,0 +1,112 @@
+:root {
+  --ui-background-color: color-mix(in lab, Canvas, #000 2%);
+  --ui-panel-bg: Canvas;
+  --ui-border-radius: 0.25rem;
+  --ui-border-color: GrayText;
+  --ui-border-width: 1px;
+  --ui-text-color: CanvasText;
+  --ui-text-muted-color: GrayText;
+  --ui-text-selection-color: Highlight;
+  --ui-highlight-color: #7ab300;
+  --ui-hover-color: var(--ui-text-selection-color);
+  --ui-backdrop-color: rgba(0, 0, 0, 0.2);
+  --ui-backdrop-filter: blur(1px);
+  --ui-outline-color: Highlight;
+
+  --ui-primary-color: #3c77b0;
+  /* --ui-primary-text-color: #fff; */
+  --ui-positive-color: #4a9d4d;
+  /* --ui-positive-text-color: #fff; */
+  --ui-info-color: #17a2b8;
+  --ui-warning-color: #e0c96c;
+  --ui-negative-color: #df7474;
+
+  .ui.button,
+  .ui.badge {
+    --ui-primary-text-color: #fff;
+    --ui-positive-text-color: #fff;
+    --ui-warning-text-color: #fff;
+    --ui-negative-text-color: #fff;
+  }
+
+  --ui-container-width: 1200px;
+}
+
+/** add variant for browser that supports dark mode and system palette */
+@supports (color-scheme: light dark) and (background-color: Canvas) and (color: CanvasText) {
+  :root {
+    --ui-field-color: Field;
+    --ui-background-color: Canvas;
+    --ui-text-color: CanvasText;
+    --ui-border-color: ButtonFace;
+    --ui-text-color: CanvasText;
+  }
+}
+
+/** Support for Safari or other browsers that support -apple-system-control-background */
+@supports (background-color: -apple-system-control-background) and (color: text) {
+  :root {
+    --ui-field-color: -apple-system-opaque-tertiary-fill;
+    --ui-background-color: -apple-system-control-background;
+    --ui-text-color: var(text, CanvasText);
+    --ui-border-color: -apple-system-control-button-border;
+  }
+}
+
+[data-theme="dark"],
+:root.dark {
+  color-scheme: dark;
+
+  --ui-background-color: color-mix(in lab, Canvas, #fff 2%);
+  --ui-panel-bg: color-mix(in lab, var(--ui-background-color), #fff 5%);
+  --ui-border-color: var(--ui-panel-bg);
+  --ui-text-muted-color: ButtonShadow;
+
+  --ui-backdrop-color: rgba(255, 255, 255, 0.1);
+}
+
+/** basic element styles */
+:focus {
+  outline-color: var(--ui-outline-color);
+}
+
+[popover] {
+  border: 0;
+}
+
+fieldset.ui {
+  border-width: var(--ui-border-width, 1px);
+  border-radius: var(--ui-border-radius);
+  border-color: var(--ui-border-color);
+
+  legend {
+    padding: 0 0.5rem;
+  }
+}
+
+.bordered {
+  --ui-border-width: 1px;
+  --ui-border-style: solid;
+
+  border-width: var(--ui-border-width, 1px);
+  border-style: var(--ui-border-style);
+  border-radius: var(--ui-border-radius);
+}
+
+/** animations */
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(1)
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(var(--material-scale));
+    opacity: 0;
+  }
+}

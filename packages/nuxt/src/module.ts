@@ -20,7 +20,8 @@ export default defineNuxtModule<ModuleOptions>({
     // })
 
     // base css
-    _nuxt.options.css.push(resolver.resolve('./runtime/css/base.css'))
+    // _nuxt.options.css.push(resolver.resolve('./runtime/css/base.css'))
+    _nuxt.options.css.unshift('@justway/ui/style/base.css')
 
     // install vueuse
     await installModule('@vueuse/nuxt')
