@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// import '@justway/ui/theme/foo.css';
+
 const now = ref(new Date())
 watchEffect(() => {
   const interval = globalThis?.setInterval(() => {
@@ -26,12 +28,13 @@ const tagsCandidates = ref([
 </script>
 <template>
   <ui-content class="list">
+    <ui-foo />
     <ui-toolbar>...</ui-toolbar>
     <nuxt-link :to="{ name: 'scaffold' }">Scaffold</nuxt-link>
     <ui-breadcrumb>
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <span aria-current="page">Current Page</span>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li aria-current="page">Current Page</li>
     </ui-breadcrumb>
     <ui-button class="fab">
       <ui-icon name="add" />
@@ -125,6 +128,10 @@ const tagsCandidates = ref([
         <ui-button value="1">One</ui-button>
         <ui-button value="2">Two</ui-button>
         <ui-button value="3">Three</ui-button>
+      </ui-group>
+      <ui-group>
+        <ui-button class="outline">Outline button</ui-button>
+        <ui-button class="outline primary">Outline button</ui-button>
       </ui-group>
     </ui-segment>
 
@@ -419,6 +426,8 @@ const tagsCandidates = ref([
   </ui-content>
 </template>
 <style>
+/* @import '@justway/ui/theme/foo.css'; */
+
 :root {
 
   /* --ui-background-color: #fff; */

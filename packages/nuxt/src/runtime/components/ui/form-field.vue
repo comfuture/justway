@@ -28,7 +28,7 @@ const renderInput = () => {
     return h(UIInput, {
       label: props.label,
     }, {
-      default: ({ setValue }: { setValue: (v: any) => void }) => {
+      default: ({ setValue }: { setValue: (v: unknown) => void }) => {
         return h('select', {
           name: props.name,
           onInput: (e: Event) => {

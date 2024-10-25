@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { h } from 'vue';
-const render = () => h('div', { class: 'ui foo' }, 'Foo')
+import "@justway/ui/style/foo.css";
 </script>
+
 <template>
-  <render />
+  <div class="ui foo">
+    Hello, world
+  </div>
 </template>
 <style>
-.ui.foo {
-  background-color: red;
-}
+/* @import "@justway/ui/css/foo.css"; */
 </style>

@@ -19,7 +19,7 @@ const selected = defineModel<CalendarValue>({
   required: false,
 })
 
-const isDateRange = (dates: any): dates is [DateLike, DateLike] => {
+const isDateRange = (dates: unknown): dates is [DateLike, DateLike] => {
   return Array.isArray(dates) && dates?.length === 2 && dates.every(d => isValidDateLike(d))
 }
 
@@ -30,7 +30,6 @@ const isDateRange = (dates: any): dates is [DateLike, DateLike] => {
  */
 const month = ref<DateLike>((() => {
   if (props.month) { // if month is specified, use it
-    console.log('month is specified', props.month)
     return props.month
   }
   if (selected.value !== undefined) {
@@ -136,7 +135,7 @@ const handleClickDay = (d: number) => {
     } else if (nthClick.value === 1) {
       (selected.value as [Date, Date])[1] = clickedDate
       // if the second click is before the first click, swap them
-      let [d1, d2] = selected.value as [Date, Date]
+      const [d1, d2] = selected.value as [Date, Date]
       if (d1 > d2) {
         selected.value = [d2, d1]
       }
@@ -187,10 +186,10 @@ const nextMonth = () => {
       <div class="weekday" v-for="weekday in weekdays" :key="weekday">{{ weekday }}</div>
     </div>
     <div class="days">
-      <kbd class="empty" v-for="_ in firstDay" :key="_"></kbd>
+      <kbd class="empty" v-for="_ in firstDay" :key="_" />
       <kbd :class="{ today: isToday(day), selected: isSelected(day), selecting: isSelecting && isSelected(day) }"
-        @click="handleClickDay(day)" @mousemove="nthClick > 0 && isSelecting && handleMouseMove(day)"
-        v-for="day in days" :key="day">
+        :aria-selected="isSelected(day)" @click="handleClickDay(day)"
+        @mousemove="nthClick > 0 && isSelecting && handleMouseMove(day)" v-for="day in days" :key="day">
         {{ day }}
       </kbd>
     </div>
