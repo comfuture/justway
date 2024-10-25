@@ -45,7 +45,7 @@ export function useRippleEffect(target: MaybeRef<HTMLElement> | MaybeRef<ProxyEl
       ripple.className = "ripple";
       ripple.style.left = `${ev.x - rect.left.value}px`;
       ripple.style.top = `${ev.y - rect.top.value}px`;
-      ripple.style.setProperty("--material-scale", '' + el.offsetWidth);
+      ripple.style.setProperty("--ripple-scale", '' + el.offsetWidth);
       el.appendChild(ripple);
       ripple.addEventListener("animationend", () => {
         ripple.offsetParent?.removeChild(ripple);
