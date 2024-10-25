@@ -2,6 +2,7 @@
 import type { RouteLocation, RouteLocationRaw } from '#vue-router';
 import { provide, inject, useAttrs } from '#imports';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = withDefaults(defineProps<{
   tag?: string,
   href?: string,
@@ -25,7 +26,7 @@ if (container === 'ui-menubar') {
     <slot name="leading">
       <ui-icon :name="icon!" v-if="icon" />
     </slot>
-    <div class="content">
+    <div class="*">
       <slot />
     </div>
     <slot name="trailing" />
@@ -38,7 +39,7 @@ if (container === 'ui-menubar') {
   width: 100%;
   align-items: center;
 
-  >.content {
+  >.\* {
     display: flex;
     flex-direction: column;
     flex-grow: 1;

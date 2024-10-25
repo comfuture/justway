@@ -1,6 +1,7 @@
-<script setup lang="ts" generic="T extends number | string">
+<script setup lang="ts" generic="T extends Numeric">
 import { defineProps, computed } from 'vue';
 import { useBrowserLocale } from '../../composables/use-browser-locale';
+
 type Numeric = number | string;
 
 const props = withDefaults(defineProps<{
@@ -19,24 +20,24 @@ const content = computed(() => {
   if (props.nullable && !props.value) {
     return '-';
   }
-  const numericValue = isNaN(+(props.value ?? 0)) ? 0 : +(props.value ?? 0)
+  const numericValue = Number.isNaN(+(props.value ?? 0)) ? 0 : +(props.value ?? 0)
   return Intl.NumberFormat(locale, {
     style: props.percent ? 'percent' : props.currency ? 'currency' : undefined,
     currency: props.currency,
-    currencyDisplay: props.currency && 'narrowSymbol',
+    currencyDisplay: props.currency ? 'narrowSymbol' : undefined,
     maximumFractionDigits: props.precision ? +props.precision : (props.percent ? 2 : 0),
   }).format(numericValue);
 });
 </script>
 <template>
-  <data class="ui number" :value="value" :class="{ empty: content === '-' }">{{ content }}</data>
+  <data class="ui number" :value="'' + value" :class="{ empty: content === '-' }">{{ content }}</data>
 </template>
 <style>
 .ui.number {
   font-variant-numeric: slashed-zero tabular-nums;
 
   &.empty {
-    color: #d1d5db;
+    color: var(--ui-text-muted-color, #d1d5db);
   }
 }
 </style>

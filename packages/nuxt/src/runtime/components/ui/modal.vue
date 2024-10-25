@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, watchEffect, nextTick, onMounted, provide, computed } from 'vue'
-import { resolveComponent, useId } from '#imports';
-// TODO: implement keep-alive
+import { resolveComponent, useId } from '#imports'
+
 const props = defineProps<{
   title?: string
   lazy?: boolean
-  form?: boolean | Record<string, any>
+  form?: boolean | Record<string, unknown>
 }>()
 
 const open = defineModel<boolean>({
@@ -17,14 +17,14 @@ const contentTag = computed(() => props.form ? resolveComponent('ui-form') : 'se
 const formId = ref(props.form ? useId() : undefined)
 const headerId = ref(useId())
 
-const contentAttrs = ref<Record<string, any>>({
+const contentAttrs = ref<Record<string, unknown>>({
   id: formId.value,
 })
 
 provide('container', 'ui-modal')
 provide('modalOpen', open)
 
-const renderHTML = ref<boolean>(!!!props.lazy)
+const renderHTML = ref<boolean>(props.lazy)
 const emit = defineEmits<{
   open: []
   close: []
@@ -55,10 +55,11 @@ watchEffect(() => {
 onMounted(() => {
   /** sync modal visibility with open prop when user close the modal */
   dialog.value?.addEventListener('animationend', () => {
-    open.value ? emit('open') : emit('close');
+    open.value ? emit('open') : emit('close')
   })
 })
 </script>
+
 <template>
   <slot name="trigger" :open="openFunc" />
   <dialog role="dialog" aria-modal="true" :aria-labelledby="headerId" class="ui modal" ref="dialog" v-if="renderHTML">
@@ -66,18 +67,19 @@ onMounted(() => {
       <h3 :id="headerId">
         <slot name="header">{{ title }}</slot>
       </h3>
-      <ui-icon class="close" name="close" @click="closeFunc" />
+      <ui-icon class="close" name="close" aria-label="Close" @click="closeFunc" />
     </header>
     <component :is="contentTag" ref="content" class="content" v-bind="contentAttrs"
       @submit="($ev: SubmitEvent) => emit('submit', $ev)">
-      <slot :open="openFunc" :close="closeFunc"></slot>
+      <slot :open="openFunc" :close="closeFunc" />
     </component>
     <section class="actions" v-if="$slots.actions">
-      <slot name="actions" :close="closeFunc" :form-id="formId"></slot>
+      <slot name="actions" :close="closeFunc" :form-id="formId" />
     </section>
   </dialog>
 </template>
-<style lang="postcss">
+
+<style>
 @keyframes appear {
   0% {
     opacity: 0;
@@ -94,7 +96,7 @@ onMounted(() => {
   }
 }
 
-@keyframe slide-in {
+@keyframes slide-in {
   0% {
     transform: translateY(-20px);
     opacity: 0;
@@ -129,11 +131,6 @@ onMounted(() => {
     outline: none;
   }
 
-  &:not(.confirm) {
-    /* margin-top: 2rem; */
-    /* @apply mt-8 md:mt-auto; */
-  }
-
   @media (min-width: 768px) {
     min-width: 200px;
   }
@@ -144,10 +141,13 @@ onMounted(() => {
 
   &[open] {
     animation: appear 0.125s ease-out normal;
-    /* animation: slide-in 1.125s ease-in-out normal; */
 
-    @screen md {
-      animation: appear 0.125s ease-out normal;
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+
+    @media (max-width: 767px) {
+      animation: slide-in 0.25s ease-in-out normal;
     }
   }
 
