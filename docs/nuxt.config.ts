@@ -7,7 +7,8 @@ export default defineNuxtConfig({
   },
   modules: [
     "@nuxtjs/tailwindcss",
-    '@nuxt/content'
+    '@nuxt/content',
+    '../packages/nuxt'
   ],
   content: {
     navigation: {

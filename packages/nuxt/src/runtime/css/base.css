@@ -4,6 +4,7 @@
   --ui-panel-bg: Canvas;
   --ui-border-radius: 0.25rem;
   --ui-border-color: GrayText;
+  --ui-text-color: CanvasText;
   --ui-text-muted-color: GrayText;
   --ui-text-selection-color: Highlight;
   --ui-highlight-color: #7ab300;
@@ -37,6 +38,7 @@
     --ui-negative: color-mix(in lab, #dc3545, #000 10%); */
   }
 }
+
 /* 
 @supports (color-scheme: dark) {
   :root {
@@ -50,9 +52,7 @@
   }
 } */
 
-@supports (color-scheme: light dark)
-  and (background-color: Canvas)
-  and (color: CanvasText) {
+@supports (color-scheme: light dark) and (background-color: Canvas) and (color: CanvasText) {
   :root {
     --ui-field-color: Field;
     --ui-bg-color: Canvas;
@@ -63,8 +63,7 @@
 }
 
 /** Support for Safari */
-@supports (background-color: -apple-system-control-background)
-  and (color: text) {
+@supports (background-color: -apple-system-control-background) and (color: text) {
   :root {
     --ui-field-color: -apple-system-opaque-tertiary-fill;
     --ui-bg-color: -apple-system-control-background;
@@ -112,4 +111,3 @@ fieldset {
 [popover] {
   border: 0;
 }
-
