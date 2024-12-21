@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<{
@@ -11,23 +10,20 @@ const drawerVisible = ref(false)
 const toggleDrawer = () => {
   drawerVisible.value = !drawerVisible.value
 }
+
+const slots = useSlots()
+const hasDrawer = computed(() => slots.drawer !== undefined)
+provide('hasDrawer', hasDrawer)
+provide('drawerVisible', drawerVisible)
 </script>
 
 <template>
   <section class="ui scaffold">
     <slot name="appbar" :toggle-drawer="toggleDrawer">
-      <header class="appbar">
-        <div class="container" :class="{ centered }">
-          <button class="menu" @click="toggleDrawer" v-if="$slots.drawer">
-            <ui-icon name="menu" />
-          </button>
-          <slot name="title">
-            <h1 class="title">{{ title }}</h1>
-          </slot>
-        </div>
-      </header>
+      <ui-appbar :title="title" :centered="centered" />
     </slot>
     <slot name="aside">
+      {{ drawerVisible }}
       <ui-drawer class="w-64 bg-[color:var(--ui-panel-bg)]" v-model="drawerVisible" v-if="$slots.drawer">
         <slot name="drawer" />
       </ui-drawer>

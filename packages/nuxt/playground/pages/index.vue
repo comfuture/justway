@@ -28,7 +28,8 @@ const tagsCandidates = ref([
 </script>
 <template>
   <ui-content class="list">
-    <ui-foo />
+    <ui-alert>This is an alert</ui-alert>
+    <ui-alert class="success" dismissible>This is a success alert</ui-alert>
     <ui-toolbar>...</ui-toolbar>
     <nuxt-link :to="{ name: 'scaffold' }">Scaffold</nuxt-link>
     <ui-breadcrumb>

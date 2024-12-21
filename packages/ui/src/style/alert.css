@@ -1,0 +1,17 @@
+.ui.alert {
+
+  --ui-face-color: var(--ui-info-color);
+
+  &.success {
+    --ui-face-color: var(--ui-positive-color);
+  }
+
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-radius: var(--ui-border-radius);
+
+  background-color: color-mix(in lab, var(--ui-face-color) 20%, rgba(255, 255, 255, 0.5) 80%);
+  border-color: var(--ui-face-color);
+  border-width: 1px;
+  color: var(--ui-text-color);
+}

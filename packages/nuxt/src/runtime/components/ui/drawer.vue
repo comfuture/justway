@@ -31,7 +31,7 @@ const drawerVisible = computed(() => {
 })
 const drawerAttrs = computed(() => ({
   popover: drawerVisible.value ? null : 'auto',
-  'aria-hidden': !drawerVisible.value,
+  'aria-hidden': !open.value,
 }))
 watch(open, (value) => {
   nextTick(() => {
@@ -87,7 +87,7 @@ onBeforeUnmount(() => {
 
   &[popover] {
     transform: translateX(-100%);
-    transition: transform 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     transition-behavior: allow-discrete;
 
     &:popover-open {

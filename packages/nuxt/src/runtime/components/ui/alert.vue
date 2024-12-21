@@ -1,5 +1,6 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
+import "@justway/ui/style/alert.css"
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = withDefaults(defineProps<{
   type?: 'info' | 'success' | 'warning' | 'error'
@@ -16,7 +17,7 @@ const dismiss = () => {
 }
 </script>
 <template>
-  <div ref="self" role="alert" class="ui alert" :class="['ui', type, { dismissible }]">
+  <div ref="self" role="alert" class="ui" :class="[type, 'alert', { dismissible }]">
     <slot />
     <button v-if="dismissible" class="close" aria-label="Close" @click="dismiss">
       <ui-icon name="close" />
