@@ -1,10 +1,13 @@
 .ui.dropdown {
   @apply flex-col relative inline-block;
-  label, button, input {
+
+  label,
+  button,
+  input {
     border-width: var(--ui-border-thickness, 1px);
     border-width: 1px;
     @apply self-start;
-    @apply p-2 border-solid border-[color:var(--ui-natural-color)] rounded-[var(--ui-border-radius)]
+    @apply p-2 border-solid border-[color:var(--ui-natural-color)] rounded-[var(--ui-border-radius)];
   }
 
   menu {
@@ -14,7 +17,9 @@
     @apply border-solid border-[color:var(--ui-border-color)] rounded-[var(--ui-border-radius)];
     @apply shadow-md;
 
-    >li, > menuitem, > a.item {
+    >li,
+    >menuitem,
+    >a.item {
       @apply p-2 min-w-[120px] cursor-pointer;
 
       &:hover {
@@ -23,11 +28,11 @@
     }
   }
 
-  &:focus-within > menu {
+  &:focus-within>menu {
     @apply flex;
   }
 
-  :focus + menu {
+  :focus+menu {
     @apply flex;
   }
 }

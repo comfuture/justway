@@ -1,8 +1,10 @@
 .ui.group {
   @apply flex flex-row box-content gap-0 w-fit;
 
-  > *, > [type="text"], &> [type="number"] {
-    @apply rounded-none
+  >*,
+  >[type="text"],
+  &>[type="number"] {
+    @apply rounded-none;
     /* @apply rounded-r-[var(-ui-radius)] rounded-r-[var(-ui-radius)] */
   }
 

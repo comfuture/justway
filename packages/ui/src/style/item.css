@@ -1,13 +1,15 @@
-.ui.item, .ui .item {
+.ui.item,
+.ui .item {
   @apply p-2 flex flex-row gap-1;
 
   &.bordered {
-    @apply border border-solid border-gray-400
+    @apply border border-solid border-gray-400;
     /* rounded-[var(--ui-border-radius)]; */
   }
 }
 
-.ui.content, .ui .content {
+.ui.content,
+.ui .content {
   @apply flex-1 flex flex-col gap-1;
 
   .title {

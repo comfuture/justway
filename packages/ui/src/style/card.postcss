@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+.ui.card {
+  @apply border border-solid border-[color:var(--ui-border-color)]
+         rounded-[var(--ui-border-radius)] w-fit;
+  /* @apply ui-variants; */
+
+  figure {
+    @apply m-0;
+    img {
+      @apply object-cover;
+    }
+
+    &:first-child > img {
+      @apply rounded-t-[var(--ui-border-radius)];
+    }
+  }
+  > .content {
+    @apply p-4;
+
+    &:last-child {
+      @apply rounded-b-[var(--ui-border-radius)];
+    }
+  }
+}
