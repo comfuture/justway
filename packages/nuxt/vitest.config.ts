@@ -1,6 +1,16 @@
 import { defineConfig } from 'vitest/config'
-import vue from '@vitejs/plugin-vue'
+import postcssImport from 'postcss-import'
+// import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
-  plugins: [vue()]
+  // plugins: [
+  //   vue(),
+  // ],
+  css: {
+    postcss: {
+      plugins: [
+        postcssImport(),
+      ],
+    },
+  },
 })
