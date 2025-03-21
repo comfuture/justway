@@ -9,14 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.5.3"
+    "vue": "^3.5.13"
   },
   "devDependencies": {
     "@justway/ui": "workspace:^",
-    "@vitejs/plugin-vue": "^2.3.4",
-    "typescript": "^4.9.5",
-    "vite": "^2.9.18",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "postcss-import": "^14.1.0",
+    "typescript": "^5.8.2",
+    "vite": "^5.4.7",
     "vite-plugin-libcss": "^1.1.1",
-    "vue-tsc": "^0.29.8"
+    "vue-tsc": "^2.1.6"
   }
 }

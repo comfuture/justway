@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import '@justway/ui/theme/default.css';
+// import '@justway/ui/theme/default.css';
 import UiAlert from './components/alert.vue';
 // import UiButton from './components/button.vue';
 // import UiButton from './components/button.vue';
-import './components/button.vue';
+import UiButton from './components/button.vue';
 import UiTab from './components/tab.vue';
 </script>
 
@@ -13,6 +13,7 @@ import UiTab from './components/tab.vue';
     <!-- <ui-button>Hello</ui-button>
     <ui-button class="primary">Hello world this is button</ui-button> -->
     <button class="ui secondary">this is also button</button>
+    <ui-button>Hello</ui-button>
   </div>
 
   <ui-tab>
@@ -24,6 +25,8 @@ import UiTab from './components/tab.vue';
 
 </template>
 <style>
+/* @import '@justway/ui/theme/default.css'; */
+
 aside {
   position: fixed;
   top: 0;
